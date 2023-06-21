@@ -1,0 +1,23 @@
+1h Arbeit an Szene
+
+TODO: Grid-System -> Tower Building -> Tower Attack System -> Monsters -> Monster Pathing and life depletion -> Monster&Tower Interaction -> verschiedene Monster&Tower -> MLAgents Integration
+
+Anfang 21.06.2023
+
+~ bis 28.06/05.07.2023 Aufbau des TD Prototyps (Modularität für Logging enthalten)
+
+~ bis 12.07.2023 Konstrukt des Agenten Skripts finalisieren und einlesen in asymmetrisches 1v1 für MLAgents (Separates Testsystem für asymm. 1v1 ggf.)
+
+~ bis 09.08.2023 Je nach Fortschritt finalisieren einer Spielerseite für Training (Defense oder Offense)
+
+~ bis 30.08.2023 Zusatzzeit für die Kalibrierung des anderen Spielers
+
+~ bis 13.09.2023 Finalisierung beider Seiten
+
+~ bis 06.10.2023 Extra Komplexität nach Bedarf in die KI einbringen
+
+~ bis 21.10.2023 Logging
+
+~ bis 28.10.2023 Rudimentäres Balancing
+
+~ bis 20.12.2023 Masterarbeitdoku schreiben
