@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,7 +12,7 @@ public class Grid<TGridObject> {
     private Dictionary<Vector3,TGridObject> gridDict;
     private TextMesh[,] debugTextArray;
 
-    public Grid(int width, int height, float cellSize, Vector3 originPosition)
+    public Grid(int width, int height, float cellSize, Vector3 originPosition, Func<Grid<TGridObject>, int, int, TGridObject> createGridObject)
     {
         this.width = width;
         this.height = height;
@@ -21,6 +22,13 @@ public class Grid<TGridObject> {
         gridDict = new Dictionary<Vector3, TGridObject>();
         debugTextArray = new TextMesh[width, height];
 
+        for (int x = 0; x < width; x++)
+        {
+            for (int z = 0; z < height; z++)
+            {
+                gridDict.Add(new Vector3(x, 0, z), createGridObject(this, x, z));
+            }
+        }
         bool showdebug = true;
         if (showdebug)
         {
@@ -29,8 +37,7 @@ public class Grid<TGridObject> {
             {
                 for (int z = 0; z < height; z++)
                 {
-                    gridDict.Add(new Vector3(x, 0, z), default);
-                    debugTextArray[x, z] = CreateWorldText(gridDict[new Vector3(x, 0, z)].ToString(), null, GetWorldPosition(x, z) + new Vector3(cellSize, 0, cellSize) * .5f, 20, Color.white, TextAnchor.MiddleCenter);
+                    debugTextArray[x, z] = CreateWorldText(gridDict[new Vector3(x, 0, z)]?.ToString(), null, GetWorldPosition(x, z) + new Vector3(cellSize, 0, cellSize) * .5f, 20, Color.white, TextAnchor.MiddleCenter);
                     Debug.DrawLine(GetWorldPosition(x, z), GetWorldPosition(x, z + 1), Color.white, 100f);
                     Debug.DrawLine(GetWorldPosition(x, z), GetWorldPosition(x + 1, z), Color.white, 100f);
                 }
@@ -50,23 +57,24 @@ public class Grid<TGridObject> {
         x = Mathf.FloorToInt((worldPosition - originPosition).x / cellSize);
         z = Mathf.FloorToInt((worldPosition - originPosition).z / cellSize);
     }
-    public void SetValue(int x, int z, TGridObject value)
+    public void SetGridObject(int x, int z, TGridObject value)
     {
         if (x >= 0 && z >= 0 && x < width && z < height)
         {
             gridDict[new Vector3(x, 0, z)] = value;
-            debugTextArray[x, z].text = gridDict[new Vector3(x, 0, z)].ToString();
+            Debug.Log(gridDict[new Vector3(x, 0, z)]?.ToString());
+            debugTextArray[x, z].text = gridDict[new Vector3(x, 0, z)]?.ToString();
         }
     }
 
-    public void SetValue(Vector3 worldPosition, TGridObject value)
+    public void SetGridObject(Vector3 worldPosition, TGridObject objectWithValue)
     {
         int x, z;
         GetXZ(worldPosition, out x, out z);
-        SetValue(x, z, value);
+        SetGridObject(x, z, objectWithValue);
     }
 
-    public TGridObject GetValue(int x, int z)
+    public TGridObject GetGridObject(int x, int z)
     {
         if (x >= 0 && z >= 0 && x < width && z < height)
         {
@@ -77,13 +85,13 @@ public class Grid<TGridObject> {
         }
     }
 
-    public TGridObject GetValue(Vector3 worldPosition)
+    public TGridObject GetGridObject(Vector3 worldPosition)
     {
         int x, z;
         GetXZ(worldPosition, out x, out z);
         if (x >= 0 && z >= 0 && x < width && z < height)
         {
-            return GetValue(x, z);
+            return GetGridObject(x, z);
         }
         else
         {
