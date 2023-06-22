@@ -239,6 +239,8 @@ GameObject:
   - component: {fileID: 498882314}
   - component: {fileID: 498882313}
   - component: {fileID: 498882315}
+  - component: {fileID: 498882317}
+  - component: {fileID: 498882316}
   m_Layer: 0
   m_Name: Testing
   m_TagString: Untagged
@@ -288,6 +290,30 @@ MonoBehaviour:
   mouseColliderLayerMask:
     serializedVersion: 2
     m_Bits: 1
+--- !u!114 &498882316
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 498882312}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89f22d988bdad6b499c12aabb0d712b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &498882317
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 498882312}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 87acb6e302f027f40a0b6fd48f439592, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &503933765
 GameObject:
   m_ObjectHideFlags: 0
