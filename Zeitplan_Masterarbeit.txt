@@ -1,6 +1,6 @@
 1h Arbeit an Szene
 
-TODO: Grid-System -> Tower Building -> Tower Attack System -> Monsters -> Monster Pathing and life depletion -> Monster&Tower Interaction -> verschiedene Monster&Tower -> MLAgents Integration
+TODO: Grid-System (done)-> Tower Building -> Tower Attack System -> Monsters -> Monster Pathing and life depletion -> Monster&Tower Interaction -> verschiedene Monster&Tower -> MLAgents Integration
 
 Anfang 21.06.2023
 
