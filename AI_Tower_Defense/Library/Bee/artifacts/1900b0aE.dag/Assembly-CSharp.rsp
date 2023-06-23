@@ -356,7 +356,9 @@
 "Assets/Scripts/GridBuildingSystem.cs"
 "Assets/Scripts/GridParametersSO.cs"
 "Assets/Scripts/Mouse3D.cs"
+"Assets/Scripts/ProjectileArrow.cs"
 "Assets/Scripts/Testing.cs"
+"Assets/Scripts/TowerAttackSystem.cs"
 "Assets/Scripts/TowerTypeSO.cs"
 "Assets/Scripts/WorldTextMesh.cs"
 -langversion:9.0

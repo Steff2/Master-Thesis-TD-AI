@@ -354,8 +354,13 @@
 -analyzer:"C:/Program Files/Unity/Hub/Editor/2022.3.1f1/Editor/Data/Tools/Unity.SourceGenerators/Unity.SourceGenerators.dll"
 "Assets/Scripts/Grid.cs"
 "Assets/Scripts/GridBuildingSystem.cs"
+"Assets/Scripts/GridParametersSO.cs"
 "Assets/Scripts/Mouse3D.cs"
+"Assets/Scripts/PlacedObject.cs"
+"Assets/Scripts/ProjectileArrow.cs"
 "Assets/Scripts/Testing.cs"
+"Assets/Scripts/TowerAttackSystem.cs"
+"Assets/Scripts/TowerTypeSO.cs"
 "Assets/Scripts/WorldTextMesh.cs"
 -langversion:9.0
 

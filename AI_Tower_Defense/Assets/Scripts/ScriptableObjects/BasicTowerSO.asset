@@ -14,5 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nameString: BasicTower
   prefab: {fileID: 6703744760376440860, guid: e6c640989c9232a4084aa97202836533, type: 3}
+  visuals: {fileID: 5697430588437355743, guid: cfbea1d9a88161f45b658a81473f1dcf, type: 3}
   width: 1
   height: 1
+  damage: 1
+  projectile: {fileID: 3699469455333006568, guid: d6cd66bc40c674842ba5fff97d4211e2, type: 3}
+  damageType: 0
