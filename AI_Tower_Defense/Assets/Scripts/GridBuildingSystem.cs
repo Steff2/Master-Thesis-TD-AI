@@ -5,21 +5,24 @@ using UnityEngine;
 public class GridBuildingSystem : MonoBehaviour
 {
 
-    [SerializeField] private Transform testTowerTransform;
     [SerializeField] private GridParametersSO gridParameters;
+    [SerializeField] private List<TowerTypeSO> towerTypes;
+    private TowerTypeSO towerType;
 
     private Grid<GridObject> grid;
 
     private void Awake()
     {
         grid = new Grid<GridObject>(gridParameters.gridWidth, gridParameters.gridHeight, gridParameters.cellSize, new Vector3(-50, 0, -18), (Grid<GridObject> g, int x, int z) => new GridObject(g, x, z));
+        towerType = towerTypes[0];
     }
+
     public class GridObject
     {
         private Grid<GridObject> grid;
         private int x;
         private int z;
-        public Transform transform;
+        public PlacedObject placedObject;
 
         public GridObject(Grid<GridObject> grid, int x, int z)
         {
@@ -28,19 +31,23 @@ public class GridBuildingSystem : MonoBehaviour
             this.z = z;
         }
 
-        public void SetTransform(Transform transform)
+        public void SetPlacedObject(PlacedObject placedObject)
         {
-            this.transform = transform;
+            this.placedObject = placedObject;
         }
 
-        public void ClearTransform()
+        public PlacedObject GetPlacedObject()
         {
-            transform = null;
+            return placedObject;
+        }
+        public void ClearPlacedObject()
+        {
+            placedObject = null;
         }
 
         public bool CanBuild()
         {
-            return transform == null;
+            return placedObject == null;
         }
         public override string ToString()
         {
@@ -51,15 +58,52 @@ public class GridBuildingSystem : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            grid.GetXZ(Mouse3D.GetMouseWorldPosition(), out int x, out int z);
+            Build();
+        }
 
-            GridObject gridObject = grid.GetGridObject(x, z);
-
-            if(gridObject.CanBuild())
+        if (Input.GetMouseButtonDown(1))
+        {
+            DestroyBuilding();
+        }
+            /*if (Input.GetKeyDown(KeyCode.Alpha1))
             {
-                Transform builtTransform = Instantiate(testTowerTransform, grid.GetWorldPosition(x, z), Quaternion.identity);
-                gridObject.SetTransform(builtTransform);
+                towerType = towerTypes[1];
             }
+            if (Input.GetKeyDown(KeyCode.Alpha2))
+            {
+                towerType = towerTypes[2];
+            }*/
+    }
+
+    private void Build()
+    {
+        grid.GetXZ(Mouse3D.GetMouseWorldPosition(), out int x, out int z);
+
+        GridObject gridObject = grid.GetGridObject(x, z);
+        if (gridObject == null)
+            return;
+
+        Vector3 placedObjectWorldPosition = grid.GetWorldPosition(x, z);
+
+        if (gridObject.CanBuild())
+        {
+            PlacedObject placedObject = PlacedObject.Create(placedObjectWorldPosition, new Vector2Int(x, z), towerType);
+            gridObject.SetPlacedObject(placedObject);
+        }
+    }
+    private void DestroyBuilding()
+    {
+        GridObject gridObject = grid.GetGridObject(Mouse3D.GetMouseWorldPosition());
+        if (gridObject == null)
+            return;
+
+        PlacedObject placedObject = gridObject.GetPlacedObject();
+
+        if (placedObject != null)
+        {
+            placedObject.DestroySelf();
+            Vector2Int gridPosition = placedObject.GetGridPosition();
+            grid.GetGridObject(gridPosition.x, gridPosition.y).ClearPlacedObject();
         }
     }
 }
