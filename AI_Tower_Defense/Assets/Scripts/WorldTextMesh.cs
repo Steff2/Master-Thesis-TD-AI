@@ -8,9 +8,15 @@ public class WorldTextMesh : MonoBehaviour
 
     private void Awake()
     {
-        Instance = this;
+        CreateSingleton();
     }
-
+    void CreateSingleton()
+    {
+        if (Instance == null)
+            Instance = this;
+        //else
+            //Destroy(gameObject);
+    }
     public static TextMesh CreateWorldText(Transform parent, string text, Vector3 localPosition, int fontSize, Color color, TextAnchor textAnchor, TextAlignment textAlignment, int sortingOrder)
     {
         GameObject gameObject = new GameObject("World_Text", typeof(TextMesh));
