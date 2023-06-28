@@ -10,3 +10,5 @@ Wichtig gegen Anfang war das richtige Layout des Tower Defense spiels zu finden 
       Dies wird nicht nur bei dem Platzieren der Türme wichtig, sondern auch für das Pathfinding der Monster und weiter in die Zukunft geschaut, für das Logging und visualisieren und Daten.
 
 23.06.2023 mehr Modularität innerhalb der Grid Cells durch einfügen komplexer Objekte als Referenz Punkt für eine Zelle. Entscheidung für Einfaches Targetting, nicht Physiks based bei Projektilen (for now)
+
+28.06.2023  Umschwung auf Unity TD Beispiel anstelle von Eigenentwickelten Prototypen. Vorteile : Großteil der gewollten Funktionen sind vorhanden - Modularität vorhanden - hohe Qualität des Beispiels in Struktur des Codes; Nachteil: Relativ anspruchsvoll zum Einlesen und spezielles umbauen von Strukturen nach späterem Bedarf -> Fazit: Zeitvergleich von Einlesen zu Eigenentwicklung ungewiss, aber Funktionalitäten vorhanden und überschaubar und hochqualitativ und deswegen wird diese Methode verwendet.
