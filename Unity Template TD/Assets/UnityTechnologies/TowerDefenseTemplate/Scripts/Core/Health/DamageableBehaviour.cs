@@ -45,7 +45,7 @@ namespace Core.Health
 		/// </summary>
 		public event Action<DamageableBehaviour> died;
 		
-
+		public event Action diedAgent;
 		/// <summary>
 		/// Takes the damage and also provides a position for the damage being dealt
 		/// </summary>
@@ -98,7 +98,10 @@ namespace Core.Health
 			{
 				died(this);
 			}
-		}
+
+            // Fire the agent death event
+            diedAgent?.Invoke();
+        }
 		
 		/// <summary>
 		/// Fires the removed event
