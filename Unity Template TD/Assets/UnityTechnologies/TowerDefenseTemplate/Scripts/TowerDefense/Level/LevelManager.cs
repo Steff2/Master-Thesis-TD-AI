@@ -200,7 +200,7 @@ namespace TowerDefense.Level
 			numberOfHomeBasesLeft = numberOfHomeBases;
 			for (int i = 0; i < numberOfHomeBases; i++)
 			{
-				homeBases[i].died += OnHomeBaseDestroyed;
+				//homeBases[i].died += OnHomeBaseDestroyed;
 			}
 		}
 
@@ -234,7 +234,7 @@ namespace TowerDefense.Level
 			// Iterate through home bases and unsubscribe
 			for (int i = 0; i < numberOfHomeBases; i++)
 			{
-				homeBases[i].died -= OnHomeBaseDestroyed;
+				//homeBases[i].died -= OnHomeBaseDestroyed;
 			}
 		}
 
