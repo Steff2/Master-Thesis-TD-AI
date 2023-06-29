@@ -228,7 +228,7 @@ namespace TowerDefense.Towers
 		}
 
 		/// <summary>
-		/// unsubsribe when necessary
+		/// unsubscribe when necessary
 		/// </summary>
 		protected virtual void OnDestroy()
 		{
