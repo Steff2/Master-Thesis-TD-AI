@@ -1,4 +1,26 @@
 {
+    "DefenseAgent": {
+        "checkpoints": [
+            {
+                "steps": 320,
+                "file_path": "results\\Defense_AI\\DefenseAgent\\DefenseAgent-320.onnx",
+                "reward": null,
+                "creation_time": 1688135725.6515782,
+                "auxillary_file_paths": [
+                    "results\\Defense_AI\\DefenseAgent\\DefenseAgent-320.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 320,
+            "file_path": "results\\Defense_AI\\DefenseAgent.onnx",
+            "reward": null,
+            "creation_time": 1688135725.6515782,
+            "auxillary_file_paths": [
+                "results\\Defense_AI\\DefenseAgent\\DefenseAgent-320.pt"
+            ]
+        }
+    },
     "metadata": {
         "stats_format_version": "0.3.0",
         "mlagents_version": "0.30.0",
