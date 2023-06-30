@@ -8,20 +8,40 @@ using TowerDefense.Towers;
 using TowerDefense.Level;
 using TowerDefense.Towers.Placement;
 using Core.Utilities;
+using TowerDefense.UI.HUD;
 
 public class DefenseAgent : Agent
 {
 
     private Dictionary<int, Tower> towersDictionary;
+
     [SerializeField] private List<TowerPlacementGrid> placementGrids;
-    [SerializeField] private IPlacementArea placementArea;
+    private TowerPlacementGrid placementArea;
+
+    [SerializeField] private PlayerHomeBase homeBase;
+
+    [SerializeField] private int baseHealth;
 
     private PoolManager poolManager;
     public override void Initialize()
     {
-        LevelManager.instance.homeBases[0].diedAgent += OnEpisodeBegin;
 
-        poolManager = PoolManager.instance;
+    }
+
+    public override void CollectObservations(VectorSensor sensor)
+    {
+        base.CollectObservations(sensor);
+    }
+
+    public void Awake()
+    {
+        LevelManager.instance.homeBases[0].diedAgent += OnEpisodeBegin;
+        LevelManager.instance.homeBases[0].diedAgent += Lose;
+        LevelManager.instance.BuildingCompleted();
+
+        towersDictionary = new Dictionary<int, Tower>();
+        placementArea = placementGrids[0];
+        if (GameUI.instanceExists) { GameUI.instance.m_CurrentArea = placementArea; }
 
         var i = 0;
         //Store items in LevelManager.instance.towerLibrary in towersDictionary
@@ -31,19 +51,19 @@ public class DefenseAgent : Agent
             i++;
         }
     }
-
-    public override void CollectObservations(VectorSensor sensor)
-    {
-        base.CollectObservations(sensor);
-    }
-
     public override void OnEpisodeBegin()
     {
-        //Generate For loop for poolable in poolManager.poolables
-        //poolManager.ReturnPoolable(poolable);
+        poolManager = PoolManager.instance;
+
+        //Reset Health of HomeBase
+        homeBase.configuration.SetMaxHealth(baseHealth);
+
+
+        if (poolManager == null) { Debug.LogError("PoolManager is null"); return; }
+
         foreach (var poolable in poolManager.poolables)
         {
-            poolable.pool.ReturnAll();
+            if (poolable.pool != null) { poolManager.ReturnPoolable(poolable); }
         }
 
     }
@@ -91,14 +111,18 @@ public class DefenseAgent : Agent
                 break;
         }*/
 
-        var gridXCoordinateConvertedToContinuousActionScale = Mathf.RoundToInt (continuousGridXCoordinate / placementGrids[0].dimensions.x);
-        var gridYCoordinateConvertedToContinuousActionScale = Mathf.RoundToInt (continuousGridYCoordinate / placementGrids[0].dimensions.y);
+
+        if (!GameUI.instance.isBuilding) GameUI.instance.SetToBuildMode(towertoPlace);
+
+        var gridXCoordinateConvertedToContinuousActionScale = Mathf.RoundToInt (Mathf.Abs (continuousGridXCoordinate) * placementArea.dimensions.x);
+        var gridYCoordinateConvertedToContinuousActionScale = Mathf.RoundToInt (Mathf.Abs (continuousGridYCoordinate) * placementArea.dimensions.y);
 
         var placementGridCoordinate = new IntVector2(gridXCoordinateConvertedToContinuousActionScale, gridYCoordinateConvertedToContinuousActionScale);
 
+        GameUI.instance.m_GridPosition = placementGridCoordinate;
         //initialize Tower
-        towertoPlace.Initialize(placementArea, placementGridCoordinate);
-
+        GameUI.instance.BuyTower();
+        //GameUI.instance.Unpause();
 
     }
 
@@ -117,5 +141,10 @@ public class DefenseAgent : Agent
     public void Reset()
     {
         //Base need to be reset
+    }
+
+    public void Lose()
+    {
+        SetReward(-1f);
     }
 }
