@@ -1,0 +1,47 @@
+{
+    "name": "root",
+    "metadata": {
+        "timer_format_version": "0.1.0",
+        "start_time_seconds": "1688113334",
+        "python_version": "3.9.13 (tags/v3.9.13:6de2ca5, May 17 2022, 16:36:42) [MSC v.1929 64 bit (AMD64)]",
+        "command_line_arguments": "F:\\MLAgents_Unity\\venv\\Scripts\\mlagents-learn --run-id=Defense_AI --force",
+        "mlagents_version": "0.30.0",
+        "mlagents_envs_version": "0.30.0",
+        "communication_protocol_version": "1.5.0",
+        "pytorch_version": "1.7.1+cu110",
+        "numpy_version": "1.21.2",
+        "end_time_seconds": "1688113399"
+    },
+    "total": 64.6916582,
+    "count": 1,
+    "self": 0.00441590000001213,
+    "children": {
+        "run_training.setup": {
+            "total": 0.023587400000000036,
+            "count": 1,
+            "self": 0.023587400000000036
+        },
+        "TrainerController.start_learning": {
+            "total": 64.6636549,
+            "count": 1,
+            "self": 0.00034669999999437096,
+            "children": {
+                "TrainerController._reset_env": {
+                    "total": 64.663291,
+                    "count": 1,
+                    "self": 64.663291
+                },
+                "trainer_threads": {
+                    "total": 7.000000010748408e-07,
+                    "count": 1,
+                    "self": 7.000000010748408e-07
+                },
+                "TrainerController._save_models": {
+                    "total": 1.650000000097407e-05,
+                    "count": 1,
+                    "self": 1.650000000097407e-05
+                }
+            }
+        }
+    }
+}
