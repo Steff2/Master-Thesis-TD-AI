@@ -128,7 +128,7 @@ namespace TowerDefense.Input
 
 			if ((mouseInfo != null) && (m_GameUI.isBuilding))
 			{
-				m_GameUI.TryMoveGhost(pointer, false);
+				//m_GameUI.TryMoveGhost(pointer, false);
 			}
 		}
 
