@@ -144,12 +144,12 @@ namespace TowerDefense.UI.HUD
 		/// <summary>
 		/// Placement area ghost tower is currently on
 		/// </summary>
-		IPlacementArea m_CurrentArea;
+		public IPlacementArea m_CurrentArea;
 
 		/// <summary>
 		/// Grid position ghost tower in on
 		/// </summary>
-		IntVector2 m_GridPosition;
+		public IntVector2 m_GridPosition;
 
 		/// <summary>
 		/// Our cached camera reference
@@ -159,7 +159,7 @@ namespace TowerDefense.UI.HUD
 		/// <summary>
 		/// Current tower placeholder. Will be null if not in the <see cref="State.Building" /> state.
 		/// </summary>
-		TowerPlacementGhost m_CurrentTower;
+		public TowerPlacementGhost m_CurrentTower;
 
 		/// <summary>
 		/// Tracks if the ghost is in a valid location and the player can afford it
@@ -600,7 +600,8 @@ namespace TowerDefense.UI.HUD
 				return false;
 			}
 			TowerFitStatus fits = m_CurrentArea.Fits(m_GridPosition, m_CurrentTower.controller.dimensions);
-			return fits == TowerFitStatus.Fits;
+
+            return fits == TowerFitStatus.Fits;
 		}
 
 		/// <summary>
@@ -1011,7 +1012,7 @@ namespace TowerDefense.UI.HUD
 		/// <exception cref="ArgumentNullException">
 		/// Throws exception if the <paramref name="towerToBuild"/> is null
 		/// </exception>
-		void SetUpGhostTower([NotNull] Tower towerToBuild)
+		public void SetUpGhostTower([NotNull] Tower towerToBuild)
 		{
 			if (towerToBuild == null)
 			{
@@ -1023,10 +1024,10 @@ namespace TowerDefense.UI.HUD
 			m_CurrentTower.Hide();
 
 			//activate build info
-			if (buildInfoUI != null)
+			/*if (buildInfoUI != null)
 			{
 				buildInfoUI.Show(towerToBuild);
-			}
+			}*/
 		}
 	}
 }
