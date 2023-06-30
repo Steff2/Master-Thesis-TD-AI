@@ -21,15 +21,15 @@ public class DefenseAgent : Agent
     {
         LevelManager.instance.homeBases[0].diedAgent += OnEpisodeBegin;
 
+        poolManager = PoolManager.instance;
+
         var i = 0;
         //Store items in LevelManager.instance.towerLibrary in towersDictionary
         foreach (var tower in LevelManager.instance.towerLibrary)
         {
-            towersDictionary[i] = tower;
+            towersDictionary.TryAdd(i, tower);
             i++;
         }
-        poolManager = PoolManager.instance;
-
     }
 
     public override void CollectObservations(VectorSensor sensor)
