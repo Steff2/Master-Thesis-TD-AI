@@ -239,7 +239,9 @@ namespace TowerDefense.Agents
 		{
 			base.Awake();
 			LazyLoad();
-			m_NavMeshAgent.enabled = false;
+            m_NavMeshAgent.enabled = false;
+
+            //LevelManager.instance.homeBases[0].diedAgent += Remove;
 		}
 		
 		/// <summary>
