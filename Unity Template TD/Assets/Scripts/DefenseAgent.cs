@@ -57,15 +57,14 @@ public class DefenseAgent : Agent
 
         //Reset Health of HomeBase
         homeBase.configuration.SetHealth(baseHealth);
-        var testHealth = homeBase.configuration.currentHealth;
 
-        if (poolManager == null) { Debug.LogError("PoolManager is null"); return; }
+        //if (poolManager == null) { Debug.LogError("PoolManager is null"); return; }
 
-        foreach (var poolable in poolManager.poolables)
+        /*foreach (var poolable in poolManager.poolables)
         {
             //Debug.Log("Poolable: " + poolable.name + " is being returned to pool");
             if (poolable.pool != null) { poolManager.ReturnPoolable(poolable); }
-        }
+        }*/
 
     }
 
