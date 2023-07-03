@@ -22,6 +22,10 @@ Anfang 21.06.2023
 28.06.2023 - Integration und Abänderung der Unity Beispiels für Eigennutzen
 29.06.2023 - Verifiziert das Maze building (zu einem bestimmten Grad), Anfang Implementation der Trainingsszenarios
 30.06.2023 - Agent kann Zufällig Türme platzieren
+
+
+
+03.07.2023 - BaseHealth resettet, Türme und Einheiten noch nicht
 ~ bis 28.06/05.07.2023 Aufbau des TD Prototyps (Modularität für Logging enthalten)
 
 ~ bis 12.07.2023 Aufbau des Agentenskripts finalisieren und einlesen in asymmetrisches 1v1 für MLAgents (Separates Testsystem für asymm. 1v1 ggf.)
