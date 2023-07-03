@@ -20,7 +20,7 @@ public class DefenseAgent : Agent
 
     [SerializeField] private PlayerHomeBase homeBase;
 
-    [SerializeField] private int baseHealth;
+    [SerializeField] private float baseHealth;
 
     private PoolManager poolManager;
     public override void Initialize()
@@ -56,13 +56,14 @@ public class DefenseAgent : Agent
         poolManager = PoolManager.instance;
 
         //Reset Health of HomeBase
-        homeBase.configuration.SetMaxHealth(baseHealth);
-
+        homeBase.configuration.SetHealth(baseHealth);
+        var testHealth = homeBase.configuration.currentHealth;
 
         if (poolManager == null) { Debug.LogError("PoolManager is null"); return; }
 
         foreach (var poolable in poolManager.poolables)
         {
+            //Debug.Log("Poolable: " + poolable.name + " is being returned to pool");
             if (poolable.pool != null) { poolManager.ReturnPoolable(poolable); }
         }
 
@@ -145,6 +146,8 @@ public class DefenseAgent : Agent
 
     public void Lose()
     {
+        Debug.Log("Lost");
         SetReward(-1f);
+        EndEpisode();
     }
 }
