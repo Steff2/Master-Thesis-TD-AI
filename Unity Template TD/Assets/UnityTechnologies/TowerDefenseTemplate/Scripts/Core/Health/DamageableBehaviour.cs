@@ -86,7 +86,9 @@ namespace Core.Health
 		{
 			// Set health to zero so that this behaviour appears to be dead. This will not fire death events
 			configuration.SetHealth(0);
-			OnRemoved();
+            diedAgent?.Invoke();
+
+            OnRemoved();
 		}
 
 		/// <summary>
@@ -100,7 +102,6 @@ namespace Core.Health
 			}
 
             // Fire the agent death event
-            diedAgent?.Invoke();
         }
 		
 		/// <summary>
