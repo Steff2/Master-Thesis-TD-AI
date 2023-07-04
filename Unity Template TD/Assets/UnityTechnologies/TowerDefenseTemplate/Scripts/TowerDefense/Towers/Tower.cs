@@ -94,7 +94,10 @@ namespace TowerDefense.Towers
 		/// <param name="destination">The destination position</param>
 		public virtual void Initialize(IPlacementArea targetArea, IntVector2 destination)
 		{
-			placementArea = targetArea;
+
+			LevelManager.instance.homeBaseDestroyed += KillTower;
+
+            placementArea = targetArea;
 			gridPosition = destination;
 
 			if (targetArea != null)

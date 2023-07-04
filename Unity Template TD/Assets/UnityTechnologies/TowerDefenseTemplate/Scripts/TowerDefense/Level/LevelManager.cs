@@ -177,8 +177,10 @@ namespace TowerDefense.Level
 			waveManager = GetComponent<WaveManager>();
 			waveManager.spawningCompleted += OnSpawningCompleted;
 
-			// Does not use the change state function as we don't need to broadcast the event for this default value
-			levelState = LevelState.Intro;
+            homeBaseDestroyed += ResetCurrency;
+
+            // Does not use the change state function as we don't need to broadcast the event for this default value
+            levelState = LevelState.Intro;
 			numberOfEnemies = 0;
 
 			// Ensure currency change listener is assigned
@@ -200,7 +202,7 @@ namespace TowerDefense.Level
 			numberOfHomeBasesLeft = numberOfHomeBases;
 			for (int i = 0; i < numberOfHomeBases; i++)
 			{
-				//homeBases[i].died += OnHomeBaseDestroyed;
+				homeBases[i].died += OnHomeBaseDestroyed;
 			}
 		}
 
@@ -234,7 +236,7 @@ namespace TowerDefense.Level
 			// Iterate through home bases and unsubscribe
 			for (int i = 0; i < numberOfHomeBases; i++)
 			{
-				//homeBases[i].died -= OnHomeBaseDestroyed;
+				homeBases[i].died -= OnHomeBaseDestroyed;
 			}
 		}
 
@@ -311,7 +313,7 @@ namespace TowerDefense.Level
 			// If there are no home bases left and the level is not over then set the level to lost
 			if ((numberOfHomeBasesLeft == 0) && !isGameOver)
 			{
-				ChangeLevelState(LevelState.Lose);
+				//ChangeLevelState(LevelState.Lose);
 			}
 		}
 
@@ -347,5 +349,12 @@ namespace TowerDefense.Level
 				levelFailed();
 			}
 		}
-	}
+
+		public void ResetCurrency()
+		{
+            currency = new Currency(startingCurrency);
+            currencyGainer.Initialize(currency);
+			Debug.Log("Current Currency: " + currency.currentCurrency);
+        }
+    }
 }

@@ -161,6 +161,11 @@ namespace TowerDefense.Agents
 			Poolable.TryPool(gameObject);
 		}
 
+		public void KillAgent()
+		{
+			if (gameObject.activeInHierarchy) { Kill(); };
+		}
+
 		/// <summary>	
 		/// Setup all the necessary parameters for this agent from configuration data
 		/// </summary>
@@ -240,8 +245,7 @@ namespace TowerDefense.Agents
 			base.Awake();
 			LazyLoad();
             m_NavMeshAgent.enabled = false;
-
-            //LevelManager.instance.homeBases[0].diedAgent += Remove;
+			LevelManager.instance.homeBaseDestroyed += KillAgent;
 		}
 		
 		/// <summary>
