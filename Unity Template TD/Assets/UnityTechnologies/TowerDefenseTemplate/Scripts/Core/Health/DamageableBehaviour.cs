@@ -45,7 +45,7 @@ namespace Core.Health
 		/// </summary>
 		public event Action<DamageableBehaviour> died;
 		
-		public event Action diedAgent;
+		public event Action reset;
 		/// <summary>
 		/// Takes the damage and also provides a position for the damage being dealt
 		/// </summary>
@@ -86,7 +86,7 @@ namespace Core.Health
 		{
 			// Set health to zero so that this behaviour appears to be dead. This will not fire death events
 			configuration.SetHealth(0);
-            diedAgent?.Invoke();
+            reset?.Invoke();
 
             OnRemoved();
 		}
