@@ -22,12 +22,6 @@ public class DefenseAgent : Agent
 
     [SerializeField] private float baseHealth;
 
-    private PoolManager poolManager;
-    public override void Initialize()
-    {
-
-    }
-
     public override void CollectObservations(VectorSensor sensor)
     {
         base.CollectObservations(sensor);
@@ -35,8 +29,7 @@ public class DefenseAgent : Agent
 
     public void Awake()
     {
-        LevelManager.instance.homeBases[0].diedAgent += OnEpisodeBegin;
-        LevelManager.instance.homeBases[0].diedAgent += Lose;
+        LevelManager.instance.homeBases[0].reset += Lose;
         LevelManager.instance.BuildingCompleted();
 
         towersDictionary = new Dictionary<int, Tower>();
@@ -53,21 +46,14 @@ public class DefenseAgent : Agent
     }
     public override void OnEpisodeBegin()
     {
-        poolManager = PoolManager.instance;
-
         //Reset Health of HomeBase
         homeBase.configuration.SetHealth(baseHealth);
-
-        //if (poolManager == null) { Debug.LogError("PoolManager is null"); return; }
-
-        /*foreach (var poolable in poolManager.poolables)
-        {
-            //Debug.Log("Poolable: " + poolable.name + " is being returned to pool");
-            if (poolable.pool != null) { poolManager.ReturnPoolable(poolable); }
-        }*/
-
     }
 
+    private void Update()
+    {
+        Debug.Log(homeBase.configuration.currentHealth);
+    }
     public void BuildTower(ActionBuffers actions)
     {
         var discreteTowerTypeSelector = actions.DiscreteActions[0];
@@ -120,6 +106,7 @@ public class DefenseAgent : Agent
         var placementGridCoordinate = new IntVector2(gridXCoordinateConvertedToContinuousActionScale, gridYCoordinateConvertedToContinuousActionScale);
 
         GameUI.instance.m_GridPosition = placementGridCoordinate;
+
         //initialize Tower
         GameUI.instance.BuyTower();
         //GameUI.instance.Unpause();
