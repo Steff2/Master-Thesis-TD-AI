@@ -56,10 +56,14 @@ namespace TowerDefense.Level
 			StartTimer(m_SpawnTimer);
 		}
 
-		/// <summary>
-		/// Handles spawning the current agent and sets up the next agent for spawning
-		/// </summary>
-		protected virtual void SpawnCurrent()
+        public void Awake()
+        {
+			//LevelManager.instance.homeBaseDestroyed += ResetWave;
+        }
+        /// <summary>
+        /// Handles spawning the current agent and sets up the next agent for spawning
+        /// </summary>
+        protected virtual void SpawnCurrent()
 		{
 			Spawn();
 			if (!TrySetupNextSpawn())
@@ -134,5 +138,11 @@ namespace TowerDefense.Level
 				waveCompleted();
 			}
 		}
+
+		public void ResetWave()
+		{
+            m_CurrentIndex = 0;
+            m_SpawnTimer = null;
+        }
 	}
 }
