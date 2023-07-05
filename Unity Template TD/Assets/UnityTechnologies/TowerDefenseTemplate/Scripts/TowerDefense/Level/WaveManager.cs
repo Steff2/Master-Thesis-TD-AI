@@ -85,7 +85,7 @@ namespace TowerDefense.Level
 		/// </summary>
 		protected virtual void Awake()
 		{
-			//LevelManager.instance.homeBaseDestroyed += ResetWaves;
+			LevelManager.instance.resetAll += ResetWaves;
 			if (startWavesOnAwake)
 			{
 				StartWaves();
@@ -136,6 +136,13 @@ namespace TowerDefense.Level
 		public void ResetWaves()
 		{
             m_CurrentIndex = 0;
+
+            //unsubscribe all waves in waves list
+            for(var indexer = 0; indexer < waves.Count; indexer++)
+			{
+				waves[indexer].waveCompleted -= NextWave;
+            }	
+
             StartWaves();
         }
 	}
