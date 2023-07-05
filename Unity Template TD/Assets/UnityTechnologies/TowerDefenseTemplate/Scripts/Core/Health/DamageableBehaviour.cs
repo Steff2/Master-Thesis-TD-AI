@@ -1,4 +1,5 @@
 ﻿using System;
+using TowerDefense.Level;
 using UnityEngine;
 
 namespace Core.Health
@@ -44,8 +45,9 @@ namespace Core.Health
 		/// Event that is fired when this instance is killed
 		/// </summary>
 		public event Action<DamageableBehaviour> died;
+
+		public event Action resetbaseHealth;
 		
-		public event Action reset;
 		/// <summary>
 		/// Takes the damage and also provides a position for the damage being dealt
 		/// </summary>
@@ -86,8 +88,7 @@ namespace Core.Health
 		{
 			// Set health to zero so that this behaviour appears to be dead. This will not fire death events
 			configuration.SetHealth(0);
-            reset?.Invoke();
-
+			resetbaseHealth?.Invoke();
             OnRemoved();
 		}
 
