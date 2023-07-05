@@ -27,6 +27,7 @@ Anfang 21.06.2023
 
 03.07.2023 - BaseHealth resettet, Türme und Einheiten noch nicht
 04.07.2023 - Gegner/Türme resettet, Waves noch nicht, Currency (evtl?) noch nicht
+05.07.2023 - Waves resetten nach ersten Wave nicht, Currency WIP(?)
 ~ bis 28.06/05.07.2023 Aufbau des TD Prototyps (Modularität für Logging enthalten)
 
 ~ bis 12.07.2023 Aufbau des Agentenskripts finalisieren und einlesen in asymmetrisches 1v1 für MLAgents (Separates Testsystem für asymm. 1v1 ggf.)
