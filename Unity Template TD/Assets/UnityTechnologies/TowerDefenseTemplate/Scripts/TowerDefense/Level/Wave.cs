@@ -44,8 +44,10 @@ namespace TowerDefense.Level
 		/// </summary>
 		public virtual void Init()
 		{
-			// If the wave is empty then warn the level designer and fire complete event
-			if (spawnInstructions.Count == 0)
+            ResetWave();
+
+            // If the wave is empty then warn the level designer and fire complete event
+            if (spawnInstructions.Count == 0)
 			{
 				Debug.LogWarning("[LEVEL] Empty Wave");
 				SafelyBroadcastWaveCompletedEvent();
@@ -56,10 +58,6 @@ namespace TowerDefense.Level
 			StartTimer(m_SpawnTimer);
 		}
 
-        public void Awake()
-        {
-			//LevelManager.instance.homeBaseDestroyed += ResetWave;
-        }
         /// <summary>
         /// Handles spawning the current agent and sets up the next agent for spawning
         /// </summary>
@@ -91,6 +89,7 @@ namespace TowerDefense.Level
 		protected bool TrySetupNextSpawn()
 		{
 			bool hasNext = spawnInstructions.Next(ref m_CurrentIndex);
+			Debug.Log("Next SpawnIndex: " + m_CurrentIndex);
 			if (hasNext)
 			{
 				SpawnInstruction nextSpawnInstruction = spawnInstructions[m_CurrentIndex];
@@ -139,10 +138,14 @@ namespace TowerDefense.Level
 			}
 		}
 
-		public void ResetWave()
+		public virtual void ResetWave()
 		{
-            m_CurrentIndex = 0;
-            m_SpawnTimer = null;
+			m_CurrentIndex = 0;
+			if(m_SpawnTimer != null)
+			{
+                StopTimer(m_SpawnTimer);
+                m_SpawnTimer = null;
+            }
         }
 	}
 }
