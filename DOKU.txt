@@ -19,3 +19,4 @@ Wichtig gegen Anfang war das richtige Layout des Tower Defense spiels zu finden 
 
 
 04.07.2023 Alle Resets der Szene durch den Action delegate machen (homeBaseDestroyed in LevelManager) der von allen Notwendigen Funktionen der Funktionalitäten subscribed wird. Anfügen von kleinen Funktionen wenn nötig.
+05.07.2023 Je nach Gewinn oder Verlust entsprechende delegates aufrufen, welche die entsprechenden Rewardfunktionen im Agentskript aufrufen, welche den resetAll delegate (vorher homeBaseDestroyed delegate) aufrufen.
