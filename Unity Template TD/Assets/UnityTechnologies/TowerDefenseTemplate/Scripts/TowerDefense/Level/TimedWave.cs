@@ -29,7 +29,9 @@ namespace TowerDefense.Level
 		/// </summary>
 		public override void Init()
 		{
-			base.Init();
+			ResetTimedWave();
+
+            base.Init();
 
 			if (spawnInstructions.Count > 0)
 			{
@@ -38,10 +40,10 @@ namespace TowerDefense.Level
 			}
 		}
 
-		/// <summary>
-		/// Handles spawning the current agent and sets up the next agent for spawning
-		/// </summary>
-		protected override void SpawnCurrent()
+        /// <summary>
+        /// Handles spawning the current agent and sets up the next agent for spawning
+        /// </summary>
+        protected override void SpawnCurrent()
 		{
 			Spawn();
 			if (!TrySetupNextSpawn())
@@ -49,5 +51,15 @@ namespace TowerDefense.Level
 				StopTimer(m_SpawnTimer);
 			}
 		}
+
+		public void ResetTimedWave()
+		{
+            //m_CurrentIndex = 0;
+			if (m_SpawnTimer != null)
+			{
+				StopTimer(m_SpawnTimer);
+				m_SpawnTimer = null;
+			}
+        }
 	}
 }
