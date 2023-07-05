@@ -29,7 +29,10 @@ public class DefenseAgent : Agent
 
     public void Awake()
     {
-        LevelManager.instance.homeBases[0].reset += Lose;
+        LevelManager.instance.resetLose += Loss;
+        LevelManager.instance.resetWin += Win;
+        LevelManager.instance.homeBases[0].resetbaseHealth += ResetBaseHealth;
+
         LevelManager.instance.BuildingCompleted();
 
         towersDictionary = new Dictionary<int, Tower>();
@@ -46,13 +49,12 @@ public class DefenseAgent : Agent
     }
     public override void OnEpisodeBegin()
     {
-        //Reset Health of HomeBase
-        homeBase.configuration.SetHealth(baseHealth);
+        ResetBaseHealth();
     }
 
     private void Update()
     {
-        Debug.Log(homeBase.configuration.currentHealth);
+        //Debug.Log(homeBase.configuration.currentHealth);
     }
     public void BuildTower(ActionBuffers actions)
     {
@@ -115,8 +117,6 @@ public class DefenseAgent : Agent
 
     public override void OnActionReceived(ActionBuffers actions)
     {
-
-
         BuildTower(actions);
     }
 
@@ -125,15 +125,24 @@ public class DefenseAgent : Agent
         base.Heuristic(actionsOut);
     }
 
-    public void Reset()
+    public void Win()
     {
-        //Base need to be reset
+        Debug.Log("Won");
+        SetReward(1f);
+        LevelManager.instance.ResetGame();
+        EndEpisode();
     }
 
-    public void Lose()
+    public void Loss()
     {
         Debug.Log("Lost");
         SetReward(-1f);
+        LevelManager.instance.ResetGame();
         EndEpisode();
+    }
+
+    public void ResetBaseHealth()
+    {         
+        homeBase.configuration.SetHealth(baseHealth);
     }
 }
