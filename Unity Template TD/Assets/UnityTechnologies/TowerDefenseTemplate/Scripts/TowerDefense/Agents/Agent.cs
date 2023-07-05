@@ -245,7 +245,7 @@ namespace TowerDefense.Agents
 			base.Awake();
 			LazyLoad();
             m_NavMeshAgent.enabled = false;
-			LevelManager.instance.homeBaseDestroyed += KillAgent;
+			LevelManager.instance.resetAll += KillAgent;
 		}
 		
 		/// <summary>

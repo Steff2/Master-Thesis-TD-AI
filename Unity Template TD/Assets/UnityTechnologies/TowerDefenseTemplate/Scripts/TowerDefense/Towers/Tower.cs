@@ -95,7 +95,7 @@ namespace TowerDefense.Towers
 		public virtual void Initialize(IPlacementArea targetArea, IntVector2 destination)
 		{
 
-			LevelManager.instance.homeBaseDestroyed += KillTower;
+			LevelManager.instance.resetAll += KillTower;
 
             placementArea = targetArea;
 			gridPosition = destination;
