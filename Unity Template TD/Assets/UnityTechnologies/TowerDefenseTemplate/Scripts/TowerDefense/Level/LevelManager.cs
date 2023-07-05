@@ -116,7 +116,17 @@ namespace TowerDefense.Level
 		/// <summary>
 		/// Event for home base being destroyed
 		/// </summary>
-		public event Action homeBaseDestroyed;
+		public event Action resetAll;
+
+		/// <summary>
+		/// Event for letting the Agent know when to reset after a "loss"
+		/// </summary>
+		public event Action resetLose;
+
+		/// <summary>
+		/// Event for letting the Agent know when to reset after a "win"
+		/// </summary>
+		public event Action resetWin;
 
 		/// <summary>
 		/// Increments the number of enemies. Called on Agent spawn
@@ -177,7 +187,7 @@ namespace TowerDefense.Level
 			waveManager = GetComponent<WaveManager>();
 			waveManager.spawningCompleted += OnSpawningCompleted;
 
-            homeBaseDestroyed += ResetCurrency;
+            resetAll += ResetCurrency;
 
             // Does not use the change state function as we don't need to broadcast the event for this default value
             levelState = LevelState.Intro;
@@ -302,17 +312,18 @@ namespace TowerDefense.Level
 		protected virtual void OnHomeBaseDestroyed(DamageableBehaviour homeBase)
 		{
 			// Decrement the number of home bases
-			numberOfHomeBasesLeft--;
+			if (numberOfHomeBasesLeft > 0) { numberOfHomeBasesLeft--; }
 
 			// Call the destroyed event
-			if (homeBaseDestroyed != null)
+			if (resetAll != null)
 			{
-				homeBaseDestroyed();
+
 			}
 
 			// If there are no home bases left and the level is not over then set the level to lost
 			if ((numberOfHomeBasesLeft == 0) && !isGameOver)
 			{
+				resetLose();
 				//ChangeLevelState(LevelState.Lose);
 			}
 		}
@@ -355,6 +366,11 @@ namespace TowerDefense.Level
             currency = new Currency(startingCurrency);
             currencyGainer.Initialize(currency);
 			Debug.Log("Current Currency: " + currency.currentCurrency);
+        }
+
+        public void ResetGame()
+        {
+            resetAll();
         }
     }
 }
