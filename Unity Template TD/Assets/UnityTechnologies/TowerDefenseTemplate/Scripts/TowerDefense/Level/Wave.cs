@@ -39,12 +39,14 @@ namespace TowerDefense.Level
 			get { return (float) (m_CurrentIndex) / spawnInstructions.Count; }
 		}
 
+		public int waveNumber;
+
+		public bool isResetting;
 		/// <summary>
 		/// Initializes the Wave
 		/// </summary>
 		public virtual void Init()
 		{
-            ResetWave();
 
             // If the wave is empty then warn the level designer and fire complete event
             if (spawnInstructions.Count == 0)
@@ -53,9 +55,9 @@ namespace TowerDefense.Level
 				SafelyBroadcastWaveCompletedEvent();
 				return;
 			}
+            m_SpawnTimer = new RepeatingTimer(spawnInstructions[0].delayToSpawn, SpawnCurrent);
+            StartTimer(m_SpawnTimer);
 
-			m_SpawnTimer = new RepeatingTimer(spawnInstructions[0].delayToSpawn, SpawnCurrent);
-			StartTimer(m_SpawnTimer);
 		}
 
         /// <summary>
@@ -113,6 +115,7 @@ namespace TowerDefense.Level
 		/// <param name="node">The starting node that the agent uses</param>
 		protected virtual void SpawnAgent(AgentConfiguration agentConfig, Node node)
 		{
+			Debug.Log("Spawning Agent");
 			Vector3 spawnPosition = node.GetRandomPointInNodeArea();
 
 			var poolable = Poolable.TryGetPoolable<Poolable>(agentConfig.agentPrefab.gameObject);
@@ -140,11 +143,18 @@ namespace TowerDefense.Level
 
 		public virtual void ResetWave()
 		{
-			m_CurrentIndex = 0;
-			if(m_SpawnTimer != null)
-			{
+            if (waveNumber != 1)
+            {
+                m_CurrentIndex = spawnInstructions.Count;
+            }
+            else
+            {
+                m_CurrentIndex = 0;
+            }
+
+            if (m_SpawnTimer != null)
+            {
                 StopTimer(m_SpawnTimer);
-                m_SpawnTimer = null;
             }
         }
 	}

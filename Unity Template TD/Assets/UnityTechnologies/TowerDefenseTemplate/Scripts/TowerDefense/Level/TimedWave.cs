@@ -29,8 +29,6 @@ namespace TowerDefense.Level
 		/// </summary>
 		public override void Init()
 		{
-			ResetTimedWave();
-
             base.Init();
 
 			if (spawnInstructions.Count > 0)
@@ -52,14 +50,14 @@ namespace TowerDefense.Level
 			}
 		}
 
-		public void ResetTimedWave()
+		public override void ResetWave()
 		{
-            //m_CurrentIndex = 0;
 			if (m_SpawnTimer != null)
 			{
-				StopTimer(m_SpawnTimer);
-				m_SpawnTimer = null;
+				StopTimer(m_WaveTimer);
 			}
+
+			base.ResetWave();
         }
 	}
 }
