@@ -126,7 +126,7 @@ namespace TowerDefense.Level
 		/// <summary>
 		/// Event for letting the Agent know when to reset after a "win"
 		/// </summary>
-		public event Action resetWin;
+		//public event Action resetWin;
 
 		/// <summary>
 		/// Increments the number of enemies. Called on Agent spawn
