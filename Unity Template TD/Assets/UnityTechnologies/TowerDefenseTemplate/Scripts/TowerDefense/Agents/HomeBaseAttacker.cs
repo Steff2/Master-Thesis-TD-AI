@@ -50,7 +50,8 @@ namespace TowerDefense.Agents
 			{
 				m_FinalDestinationDamageableBehaviour.TakeDamage(damager.damage, transform.position, agent.configuration.alignmentProvider);
 			}
-			agent.Remove();
+
+			if (agent.gameObject.activeInHierarchy) { agent.Remove(); }
 		}
 
 		/// <summary>
