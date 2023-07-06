@@ -88,7 +88,7 @@ namespace Core.Health
 		{
 			// Set health to zero so that this behaviour appears to be dead. This will not fire death events
 			configuration.SetHealth(0);
-			resetbaseHealth?.Invoke();
+			if (gameObject.name == "EndNode") { resetbaseHealth?.Invoke(); }
             OnRemoved();
 		}
 
