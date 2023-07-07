@@ -14,10 +14,11 @@ namespace TowerDefense.Level
 		[Tooltip("The time until the next wave is started")]
 		public float timeToNextWave = 10f;
 
-		/// <summary>
-		/// The timer used to start the next wave
-		/// </summary>
-		protected Timer m_WaveTimer;
+		public float timeToNextWaveResetValue;
+        /// <summary>
+        /// The timer used to start the next wave
+        /// </summary>
+        protected Timer m_WaveTimer;
 
 		public override float progress
 		{
@@ -52,12 +53,18 @@ namespace TowerDefense.Level
 
 		public override void ResetWave()
 		{
-			if (m_SpawnTimer != null)
+			if (m_WaveTimer != null)
 			{
 				StopTimer(m_WaveTimer);
 			}
-
-			base.ResetWave();
+            if (m_SpawnTimer != null)
+            {
+                StopTimer(m_SpawnTimer);
+            }
+            timeToNextWave = timeToNextWaveResetValue;
+            m_CurrentIndex = 0;
+			waveNumber = 1;
+            Init();
         }
 	}
 }

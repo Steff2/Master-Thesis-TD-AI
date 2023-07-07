@@ -45,7 +45,7 @@ namespace TowerDefense.Level
 		/// <summary>
 		/// Get the current amount of waves running
 		/// </summary>
-		public List<Wave> activeWaves = new List<Wave>();
+		public Wave activeWave;
 
 		public float waveProgress
 		{
@@ -120,9 +120,8 @@ namespace TowerDefense.Level
 		{
 			Wave wave = waves[m_CurrentIndex];
 			wave.waveNumber = m_CurrentIndex + 1;
-			//wave.isResetting = false;
 			wave.waveCompleted += NextWave;
-			activeWaves.Add(wave);
+			activeWave = wave;
 			wave.Init();
 			if (waveChanged != null)
 			{
@@ -143,19 +142,10 @@ namespace TowerDefense.Level
 
 		public void ResetWaves()
 		{
-            //unsubscribe all waves in waves list
-            for(var indexer = 0; indexer < activeWaves.Count; indexer++)
-			{
-                activeWaves[indexer].waveCompleted -= NextWave;
-                activeWaves[indexer].isResetting = true;
-                activeWaves[indexer].ResetWave();
-				activeWaves.Clear();
-
-
-            }
+			//Generate for loop in waves
             m_CurrentIndex = 0;
-
-            StartWaves();
+			activeWave.spawnInstructions = waves[0].spawnInstructions;
+			activeWave.ResetWave();
         }
 	}
 }
