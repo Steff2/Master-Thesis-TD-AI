@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Timers;
 using System.Collections.Generic;
 using Core.Extensions;
 using Core.Utilities;
@@ -18,6 +19,8 @@ namespace TowerDefense.Level
 		/// A list of instructions on how to spawn enemies
 		/// </summary>
 		public List<SpawnInstruction> spawnInstructions;
+
+		protected List<Agent> spawnedAgents;
 
 		/// <summary>
 		/// The index of the current enemy to spawn
@@ -40,11 +43,17 @@ namespace TowerDefense.Level
 		}
 
 		public int waveNumber;
+
+		private static System.Timers.Timer spawnTimer;
 		/// <summary>
 		/// Initializes the Wave
 		/// </summary>
 		public virtual void Init()
 		{
+			spawnTimer = new System.Timers.Timer(2000);
+
+			spawnedAgents = new List<Agent>();
+
             // If the wave is empty then warn the level designer and fire complete event
             if (spawnInstructions.Count == 0)
 			{
@@ -52,15 +61,20 @@ namespace TowerDefense.Level
 				SafelyBroadcastWaveCompletedEvent();
 				return;
 			}
-            m_SpawnTimer = new RepeatingTimer(spawnInstructions[0].delayToSpawn, SpawnCurrent);
-            StartTimer(m_SpawnTimer);
+            //m_SpawnTimer = new RepeatingTimer(spawnInstructions[0].delayToSpawn, SpawnCurrent);
+            //StartTimer(m_SpawnTimer);
+
+			spawnTimer.Elapsed += SpawnCurrent;
+			spawnTimer.AutoReset = false;
+			spawnTimer.Enabled = true;
+			spawnTimer.Start();
 
 		}
 
         /// <summary>
         /// Handles spawning the current agent and sets up the next agent for spawning
         /// </summary>
-        protected virtual void SpawnCurrent()
+        protected virtual void SpawnCurrent(System.Object source, ElapsedEventArgs e)
 		{
 			Spawn();
 			if (!TrySetupNextSpawn())
@@ -68,7 +82,9 @@ namespace TowerDefense.Level
 				SafelyBroadcastWaveCompletedEvent();
 				// this is required so wave progress is still accurate
 				m_CurrentIndex = spawnInstructions.Count;
-				StopTimer(m_SpawnTimer);
+				//StopTimer(m_SpawnTimer);
+
+				spawnTimer.Stop();
 			}
 		}
 
@@ -77,8 +93,12 @@ namespace TowerDefense.Level
 		/// </summary>
 		protected void Spawn()
 		{
-			SpawnInstruction spawnInstruction = spawnInstructions[m_CurrentIndex];
-			SpawnAgent(spawnInstruction.agentConfiguration, spawnInstruction.startingNode);
+			if(m_CurrentIndex < spawnInstructions.Count)
+			{
+                SpawnInstruction spawnInstruction = spawnInstructions[m_CurrentIndex];
+                SpawnAgent(spawnInstruction.agentConfiguration, spawnInstruction.startingNode);
+            }
+
 		}
 
 		/// <summary>
@@ -93,14 +113,14 @@ namespace TowerDefense.Level
 				//Generate console message for wave number + m_CurrentIndex
 				Debug.Log("Wave " + waveNumber + " SpawnIndex: " + m_CurrentIndex);
 				SpawnInstruction nextSpawnInstruction = spawnInstructions[m_CurrentIndex];
-				if (nextSpawnInstruction.delayToSpawn <= 0f)
+				/*if (nextSpawnInstruction.delayToSpawn <= 0f)
 				{
 					SpawnCurrent();
 				}
 				else
 				{
 					m_SpawnTimer.SetTime(nextSpawnInstruction.delayToSpawn);
-				}
+				}*/
 			}
 
 			return hasNext;
@@ -125,25 +145,37 @@ namespace TowerDefense.Level
 			agentInstance.Initialize();
 			agentInstance.SetNode(node);
 			agentInstance.transform.rotation = node.transform.rotation;
-		}
+            spawnedAgents.Add(agentInstance);
 
-		/// <summary>
-		/// Launch the waveCompleted event
-		/// </summary>
-		protected void SafelyBroadcastWaveCompletedEvent()
+        }
+
+        /// <summary>
+        /// Launch the waveCompleted event
+        /// </summary>
+        protected void SafelyBroadcastWaveCompletedEvent()
 		{
             waveCompleted?.Invoke();
         }
 
 		public virtual void ResetWave()
 		{
-            if (m_SpawnTimer != null)
+			//Generate for loop to destroy all agents in spawnedAgents
+			for (int i = 0; i < spawnedAgents.Count; i++)
+			{
+				spawnedAgents[i].KillAgent();
+			}
+
+            /*if (m_SpawnTimer != null)
             {
                 StopTimer(m_SpawnTimer);
+            }*/
+
+			if (spawnTimer != null)
+			{
+                spawnTimer.Stop();
             }
             m_CurrentIndex = 0;
 			waveNumber = 1;
-			Init();
         }
 
 	}
