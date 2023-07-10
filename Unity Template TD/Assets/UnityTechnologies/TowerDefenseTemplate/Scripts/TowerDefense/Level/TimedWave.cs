@@ -14,7 +14,6 @@ namespace TowerDefense.Level
 		[Tooltip("The time until the next wave is started")]
 		public float timeToNextWave = 10f;
 
-		public float timeToNextWaveResetValue;
         /// <summary>
         /// The timer used to start the next wave
         /// </summary>
@@ -42,29 +41,22 @@ namespace TowerDefense.Level
         /// <summary>
         /// Handles spawning the current agent and sets up the next agent for spawning
         /// </summary>
-        protected override void SpawnCurrent()
+        /*protected override void SpawnCurrent()
 		{
 			Spawn();
 			if (!TrySetupNextSpawn())
 			{
 				StopTimer(m_SpawnTimer);
 			}
-		}
+		}*/
 
 		public override void ResetWave()
 		{
-			if (m_WaveTimer != null)
+            if (m_WaveTimer != null)
 			{
 				StopTimer(m_WaveTimer);
 			}
-            if (m_SpawnTimer != null)
-            {
-                StopTimer(m_SpawnTimer);
-            }
-            timeToNextWave = timeToNextWaveResetValue;
-            m_CurrentIndex = 0;
-			waveNumber = 1;
-            Init();
+			base.ResetWave();
         }
-	}
+    }
 }
