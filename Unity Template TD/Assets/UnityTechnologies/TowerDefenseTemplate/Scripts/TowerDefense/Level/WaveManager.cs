@@ -144,8 +144,10 @@ namespace TowerDefense.Level
 		{
 			//Generate for loop in waves
             m_CurrentIndex = 0;
-			activeWave.spawnInstructions = waves[0].spawnInstructions;
+			activeWave.waveCompleted -= NextWave;
 			activeWave.ResetWave();
+			activeWave = null;
+			InitCurrentWave();
         }
 	}
 }
