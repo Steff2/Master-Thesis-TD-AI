@@ -18,8 +18,8 @@ public class DefenseAgent : Agent
     [SerializeField] private List<TowerPlacementGrid> placementGrids;
     private TowerPlacementGrid placementArea;
 
-    [SerializeField] private PlayerHomeBase homeBase;
 
+    [SerializeField] private PlayerHomeBase homeBase;
     [SerializeField] private float baseHealth;
 
     public override void CollectObservations(VectorSensor sensor)
@@ -30,7 +30,7 @@ public class DefenseAgent : Agent
     public void Awake()
     {
         LevelManager.instance.resetLose += Loss;
-        //LevelManager.instance.resetWin += Win;
+        LevelManager.instance.resetWin += Win;
         LevelManager.instance.homeBases[0].resetbaseHealth += ResetBaseHealth;
 
         LevelManager.instance.BuildingCompleted();
