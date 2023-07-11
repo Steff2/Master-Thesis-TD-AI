@@ -126,7 +126,7 @@ namespace TowerDefense.Level
 		/// <summary>
 		/// Event for letting the Agent know when to reset after a "win"
 		/// </summary>
-		//public event Action resetWin;
+		public event Action resetWin;
 
 		/// <summary>
 		/// Increments the number of enemies. Called on Agent spawn
@@ -185,7 +185,8 @@ namespace TowerDefense.Level
 		{
 			base.Awake();
 			waveManager = GetComponent<WaveManager>();
-			waveManager.spawningCompleted += OnSpawningCompleted;
+			//waveManager.spawningCompleted += OnSpawningCompleted;
+			waveManager.spawningCompleted += SafelyCallLevelCompleted;
 
             resetAll += ResetCurrency;
 
@@ -236,9 +237,11 @@ namespace TowerDefense.Level
 			base.OnDestroy();
 			if (waveManager != null)
 			{
-				waveManager.spawningCompleted -= OnSpawningCompleted;
-			}
-			if (intro != null)
+				//waveManager.spawningCompleted -= OnSpawningCompleted;
+                waveManager.spawningCompleted -= SafelyCallLevelCompleted;
+
+            }
+            if (intro != null)
 			{
 				intro.introCompleted -= IntroCompleted;
 			}
@@ -323,7 +326,7 @@ namespace TowerDefense.Level
 			// If there are no home bases left and the level is not over then set the level to lost
 			if ((numberOfHomeBasesLeft == 0) && !isGameOver)
 			{
-				resetLose();
+				resetLose?.Invoke();
 				//ChangeLevelState(LevelState.Lose);
 			}
 		}
@@ -333,10 +336,12 @@ namespace TowerDefense.Level
 		/// </summary>
 		protected virtual void SafelyCallLevelCompleted()
 		{
-			if (levelCompleted != null)
+			resetWin?.Invoke();
+
+			/*if (levelCompleted != null)
 			{
 				levelCompleted();
-			}
+			}*/
 		}
 
 		/// <summary>
