@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using UnityEngine;
-using System.Xml.Linq;
 using Unity.MLAgents;
 using Unity.MLAgents.Sensors;
 using Unity.MLAgents.Actuators;
@@ -9,6 +8,7 @@ using TowerDefense.Level;
 using TowerDefense.Towers.Placement;
 using Core.Utilities;
 using TowerDefense.UI.HUD;
+using Core.Economy;
 
 public class DefenseAgent : Agent
 {
@@ -22,19 +22,28 @@ public class DefenseAgent : Agent
     [SerializeField] private PlayerHomeBase homeBase;
     [SerializeField] private float baseHealth;
 
-    public override void CollectObservations(VectorSensor sensor)
-    {
-        base.CollectObservations(sensor);
-    }
+    BufferSensorComponent m_BufferSensor;
+    float[] m_GridOccupationRepresentative = new float[180];
 
-    public void Awake()
+    private Tower towertoPlace;
+    private int towerIndex;
+    private Currency currency;
+    private int gridXCoordinateConvertedToContinuousActionScale;
+    private int gridYCoordinateConvertedToContinuousActionScale;
+
+    public override void Initialize()
     {
+
+        m_BufferSensor = GetComponent<BufferSensorComponent>();
+
         LevelManager.instance.resetLose += Loss;
         LevelManager.instance.resetWin += Win;
         LevelManager.instance.homeBases[0].resetbaseHealth += ResetBaseHealth;
 
         LevelManager.instance.BuildingCompleted();
 
+        currency = LevelManager.instance.currency;
+        towertoPlace = null;
         towersDictionary = new Dictionary<int, Tower>();
         placementArea = placementGrids[0];
         if (GameUI.instanceExists) { GameUI.instance.m_CurrentArea = placementArea; }
@@ -47,14 +56,23 @@ public class DefenseAgent : Agent
             i++;
         }
     }
+
+    public override void CollectObservations(VectorSensor sensor)
+    {
+
+
+        sensor.AddObservation(gridXCoordinateConvertedToContinuousActionScale);
+        sensor.AddObservation(gridYCoordinateConvertedToContinuousActionScale);
+        float towerIndexNormalized = (towerIndex - 0) / (3 - 0);
+        sensor.AddObservation(towerIndexNormalized);
+
+        //needs to be normalized
+        sensor.AddObservation(currency.currentCurrency);
+    }
+
     public override void OnEpisodeBegin()
     {
         ResetBaseHealth();
-    }
-
-    private void Update()
-    {
-        //Debug.Log(homeBase.configuration.currentHealth);
     }
     public void BuildTower(ActionBuffers actions)
     {
@@ -65,7 +83,7 @@ public class DefenseAgent : Agent
 
         var tower = towersDictionary[actions.DiscreteActions[0]];
 
-        Tower towertoPlace = null;
+        towerIndex = discreteTowerTypeSelector;
         //Generate switch case of discreteTowerTypeSelector
         switch (discreteTowerTypeSelector)
         {
@@ -102,8 +120,8 @@ public class DefenseAgent : Agent
 
         if (!GameUI.instance.isBuilding) GameUI.instance.SetToBuildMode(towertoPlace);
 
-        var gridXCoordinateConvertedToContinuousActionScale = Mathf.RoundToInt (Mathf.Abs (continuousGridXCoordinate) * placementArea.dimensions.x);
-        var gridYCoordinateConvertedToContinuousActionScale = Mathf.RoundToInt (Mathf.Abs (continuousGridYCoordinate) * placementArea.dimensions.y);
+        gridXCoordinateConvertedToContinuousActionScale = Mathf.RoundToInt (Mathf.Abs (continuousGridXCoordinate) * placementArea.dimensions.x);
+        gridYCoordinateConvertedToContinuousActionScale = Mathf.RoundToInt (Mathf.Abs (continuousGridYCoordinate) * placementArea.dimensions.y);
 
         var placementGridCoordinate = new IntVector2(gridXCoordinateConvertedToContinuousActionScale, gridYCoordinateConvertedToContinuousActionScale);
 
