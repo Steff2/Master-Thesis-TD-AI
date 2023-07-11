@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Timers;
+using System.Windows;
 using System.Collections.Generic;
 using Core.Extensions;
 using Core.Utilities;
@@ -44,14 +45,11 @@ namespace TowerDefense.Level
 
 		public int waveNumber;
 
-		private static System.Timers.Timer spawnTimer;
 		/// <summary>
 		/// Initializes the Wave
 		/// </summary>
 		public virtual void Init()
 		{
-			spawnTimer = new System.Timers.Timer(2000);
-
 			spawnedAgents = new List<Agent>();
 
             // If the wave is empty then warn the level designer and fire complete event
@@ -61,30 +59,23 @@ namespace TowerDefense.Level
 				SafelyBroadcastWaveCompletedEvent();
 				return;
 			}
-            //m_SpawnTimer = new RepeatingTimer(spawnInstructions[0].delayToSpawn, SpawnCurrent);
-            //StartTimer(m_SpawnTimer);
-
-			spawnTimer.Elapsed += SpawnCurrent;
-			spawnTimer.AutoReset = false;
-			spawnTimer.Enabled = true;
-			spawnTimer.Start();
+            m_SpawnTimer = new RepeatingTimer(spawnInstructions[0].delayToSpawn, SpawnCurrent);
+            StartTimer(m_SpawnTimer);
 
 		}
 
         /// <summary>
         /// Handles spawning the current agent and sets up the next agent for spawning
         /// </summary>
-        protected virtual void SpawnCurrent(System.Object source, ElapsedEventArgs e)
+        protected virtual void SpawnCurrent()
 		{
 			Spawn();
 			if (!TrySetupNextSpawn())
 			{
 				SafelyBroadcastWaveCompletedEvent();
 				// this is required so wave progress is still accurate
-				m_CurrentIndex = spawnInstructions.Count;
-				//StopTimer(m_SpawnTimer);
-
-				spawnTimer.Stop();
+				m_CurrentIndex = 0;
+				StopTimer(m_SpawnTimer);
 			}
 		}
 
@@ -113,14 +104,14 @@ namespace TowerDefense.Level
 				//Generate console message for wave number + m_CurrentIndex
 				Debug.Log("Wave " + waveNumber + " SpawnIndex: " + m_CurrentIndex);
 				SpawnInstruction nextSpawnInstruction = spawnInstructions[m_CurrentIndex];
-				/*if (nextSpawnInstruction.delayToSpawn <= 0f)
+				if (nextSpawnInstruction.delayToSpawn <= 0f)
 				{
 					SpawnCurrent();
 				}
 				else
 				{
 					m_SpawnTimer.SetTime(nextSpawnInstruction.delayToSpawn);
-				}*/
+				}
 			}
 
 			return hasNext;
@@ -165,18 +156,12 @@ namespace TowerDefense.Level
 				spawnedAgents[i].KillAgent();
 			}
 
-            /*if (m_SpawnTimer != null)
+            if (m_SpawnTimer != null)
             {
                 StopTimer(m_SpawnTimer);
-            }*/
-
-			if (spawnTimer != null)
-			{
-                spawnTimer.Stop();
             }
-            m_CurrentIndex = 0;
+			m_CurrentIndex = 0;
 			waveNumber = 1;
         }
-
 	}
 }
