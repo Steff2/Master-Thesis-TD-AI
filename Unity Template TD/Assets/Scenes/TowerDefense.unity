@@ -1368,6 +1368,7 @@ MonoBehaviour:
   - {fileID: 1409585444}
   - {fileID: 1977792163}
   - {fileID: 2129735346}
+  activeWave: {fileID: 0}
 --- !u!4 &531921935
 Transform:
   m_ObjectHideFlags: 0
@@ -1563,6 +1564,7 @@ GameObject:
   - component: {fileID: 612512065}
   - component: {fileID: 612512067}
   - component: {fileID: 612512068}
+  - component: {fileID: 612512069}
   m_Layer: 0
   m_Name: Agent
   m_TagString: Untagged
@@ -1649,6 +1651,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DecisionPeriod: 5
   TakeActionsBetweenDecisions: 1
+--- !u!114 &612512069
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 612512063}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd8012d5925524537b27131fef517017, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SensorName: BufferSensor
+  m_ObservableSize: 183
+  m_MaxNumObservables: 180
 --- !u!1001 &623182854
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2730,7 +2747,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1344527604
 Transform:
   m_ObjectHideFlags: 0
@@ -2868,10 +2885,58 @@ MonoBehaviour:
   m_GameObject: {fileID: 1409585442}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e9dbbe0a9162d4ea08b6fb9ee3a23ade, type: 3}
+  m_Script: {fileID: 11500000, guid: 3e163b44e2cbd43b1b9d9b55ed78cca0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   spawnInstructions:
+  - agentConfiguration: {fileID: 11400000, guid: 194678e37891244b78d3ad8b21d3f878,
+      type: 2}
+    delayToSpawn: 2
+    startingNode: {fileID: 1677426523}
+  - agentConfiguration: {fileID: 11400000, guid: 194678e37891244b78d3ad8b21d3f878,
+      type: 2}
+    delayToSpawn: 2
+    startingNode: {fileID: 1677426523}
+  - agentConfiguration: {fileID: 11400000, guid: 194678e37891244b78d3ad8b21d3f878,
+      type: 2}
+    delayToSpawn: 2
+    startingNode: {fileID: 1677426523}
+  - agentConfiguration: {fileID: 11400000, guid: 194678e37891244b78d3ad8b21d3f878,
+      type: 2}
+    delayToSpawn: 2
+    startingNode: {fileID: 1677426523}
+  - agentConfiguration: {fileID: 11400000, guid: 194678e37891244b78d3ad8b21d3f878,
+      type: 2}
+    delayToSpawn: 2
+    startingNode: {fileID: 1677426523}
+  - agentConfiguration: {fileID: 11400000, guid: 194678e37891244b78d3ad8b21d3f878,
+      type: 2}
+    delayToSpawn: 2
+    startingNode: {fileID: 1677426523}
+  - agentConfiguration: {fileID: 11400000, guid: 194678e37891244b78d3ad8b21d3f878,
+      type: 2}
+    delayToSpawn: 2
+    startingNode: {fileID: 1677426523}
+  - agentConfiguration: {fileID: 11400000, guid: 194678e37891244b78d3ad8b21d3f878,
+      type: 2}
+    delayToSpawn: 2
+    startingNode: {fileID: 1677426523}
+  - agentConfiguration: {fileID: 11400000, guid: 194678e37891244b78d3ad8b21d3f878,
+      type: 2}
+    delayToSpawn: 2
+    startingNode: {fileID: 1677426523}
+  - agentConfiguration: {fileID: 11400000, guid: 194678e37891244b78d3ad8b21d3f878,
+      type: 2}
+    delayToSpawn: 2
+    startingNode: {fileID: 1677426523}
+  - agentConfiguration: {fileID: 11400000, guid: 194678e37891244b78d3ad8b21d3f878,
+      type: 2}
+    delayToSpawn: 2
+    startingNode: {fileID: 1677426523}
+  - agentConfiguration: {fileID: 11400000, guid: 194678e37891244b78d3ad8b21d3f878,
+      type: 2}
+    delayToSpawn: 2
+    startingNode: {fileID: 1677426523}
   - agentConfiguration: {fileID: 11400000, guid: 57816016cc4b94e069d9d8a6add55324,
       type: 2}
     delayToSpawn: 2
@@ -2884,55 +2949,7 @@ MonoBehaviour:
       type: 2}
     delayToSpawn: 2
     startingNode: {fileID: 1677426523}
-  - agentConfiguration: {fileID: 11400000, guid: 194678e37891244b78d3ad8b21d3f878,
-      type: 2}
-    delayToSpawn: 2
-    startingNode: {fileID: 1677426523}
-  - agentConfiguration: {fileID: 11400000, guid: 194678e37891244b78d3ad8b21d3f878,
-      type: 2}
-    delayToSpawn: 2
-    startingNode: {fileID: 1677426523}
-  - agentConfiguration: {fileID: 11400000, guid: 194678e37891244b78d3ad8b21d3f878,
-      type: 2}
-    delayToSpawn: 2
-    startingNode: {fileID: 1677426523}
-  - agentConfiguration: {fileID: 11400000, guid: 194678e37891244b78d3ad8b21d3f878,
-      type: 2}
-    delayToSpawn: 2
-    startingNode: {fileID: 1677426523}
-  - agentConfiguration: {fileID: 11400000, guid: 194678e37891244b78d3ad8b21d3f878,
-      type: 2}
-    delayToSpawn: 2
-    startingNode: {fileID: 1677426523}
-  - agentConfiguration: {fileID: 11400000, guid: f288f6c0804db40c393d7c70b6cca646,
-      type: 2}
-    delayToSpawn: 2
-    startingNode: {fileID: 1677426523}
-  - agentConfiguration: {fileID: 11400000, guid: f288f6c0804db40c393d7c70b6cca646,
-      type: 2}
-    delayToSpawn: 2
-    startingNode: {fileID: 1677426523}
-  - agentConfiguration: {fileID: 11400000, guid: f288f6c0804db40c393d7c70b6cca646,
-      type: 2}
-    delayToSpawn: 2
-    startingNode: {fileID: 1677426523}
-  - agentConfiguration: {fileID: 11400000, guid: f288f6c0804db40c393d7c70b6cca646,
-      type: 2}
-    delayToSpawn: 2
-    startingNode: {fileID: 1677426523}
-  - agentConfiguration: {fileID: 11400000, guid: f288f6c0804db40c393d7c70b6cca646,
-      type: 2}
-    delayToSpawn: 2
-    startingNode: {fileID: 1677426523}
-  - agentConfiguration: {fileID: 11400000, guid: f288f6c0804db40c393d7c70b6cca646,
-      type: 2}
-    delayToSpawn: 2
-    startingNode: {fileID: 1677426523}
-  - agentConfiguration: {fileID: 11400000, guid: f288f6c0804db40c393d7c70b6cca646,
-      type: 2}
-    delayToSpawn: 2
-    startingNode: {fileID: 1677426523}
-  timeToNextWave: 10
+  waveNumber: 0
 --- !u!1 &1417582699
 GameObject:
   m_ObjectHideFlags: 0
@@ -3005,17 +3022,29 @@ MonoBehaviour:
   m_GameObject: {fileID: 1437342461}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e9dbbe0a9162d4ea08b6fb9ee3a23ade, type: 3}
+  m_Script: {fileID: 11500000, guid: 3e163b44e2cbd43b1b9d9b55ed78cca0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   spawnInstructions:
   - agentConfiguration: {fileID: 11400000, guid: 194678e37891244b78d3ad8b21d3f878,
       type: 2}
-    delayToSpawn: 1
+    delayToSpawn: 2
     startingNode: {fileID: 1677426523}
   - agentConfiguration: {fileID: 11400000, guid: 194678e37891244b78d3ad8b21d3f878,
       type: 2}
-    delayToSpawn: 3
+    delayToSpawn: 2
+    startingNode: {fileID: 1677426523}
+  - agentConfiguration: {fileID: 11400000, guid: 194678e37891244b78d3ad8b21d3f878,
+      type: 2}
+    delayToSpawn: 2
+    startingNode: {fileID: 1677426523}
+  - agentConfiguration: {fileID: 11400000, guid: 194678e37891244b78d3ad8b21d3f878,
+      type: 2}
+    delayToSpawn: 2
+    startingNode: {fileID: 1677426523}
+  - agentConfiguration: {fileID: 11400000, guid: 194678e37891244b78d3ad8b21d3f878,
+      type: 2}
+    delayToSpawn: 2
     startingNode: {fileID: 1677426523}
   - agentConfiguration: {fileID: 11400000, guid: 194678e37891244b78d3ad8b21d3f878,
       type: 2}
@@ -3057,19 +3086,7 @@ MonoBehaviour:
       type: 2}
     delayToSpawn: 2
     startingNode: {fileID: 1677426523}
-  - agentConfiguration: {fileID: 11400000, guid: 194678e37891244b78d3ad8b21d3f878,
-      type: 2}
-    delayToSpawn: 2
-    startingNode: {fileID: 1677426523}
-  - agentConfiguration: {fileID: 11400000, guid: 194678e37891244b78d3ad8b21d3f878,
-      type: 2}
-    delayToSpawn: 2
-    startingNode: {fileID: 1677426523}
-  - agentConfiguration: {fileID: 11400000, guid: 194678e37891244b78d3ad8b21d3f878,
-      type: 2}
-    delayToSpawn: 2
-    startingNode: {fileID: 1677426523}
-  timeToNextWave: 42
+  waveNumber: 0
 --- !u!1 &1450171056
 GameObject:
   m_ObjectHideFlags: 0
@@ -3136,7 +3153,7 @@ MonoBehaviour:
   placementTilePrefabMobile: {fileID: 114496876178851720, guid: 18a440af7ac5d46c8af359534286c4bf,
     type: 3}
   dimensions:
-    x: 20
+    x: 18
     y: 10
   gridSize: 1
 --- !u!65 &1489249376
@@ -3158,8 +3175,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 20, y: 0, z: 10}
-  m_Center: {x: 10, y: 0, z: 5}
+  m_Size: {x: 18, y: 0, z: 10}
+  m_Center: {x: 9, y: 0, z: 5}
 --- !u!4 &1489249377
 Transform:
   m_ObjectHideFlags: 0
@@ -3792,7 +3809,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   linkedNodes:
-  - {fileID: 1344527605}
+  - {fileID: 1193562913}
 --- !u!114 &1677426523
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4242,39 +4259,35 @@ MonoBehaviour:
   m_GameObject: {fileID: 1977792161}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e9dbbe0a9162d4ea08b6fb9ee3a23ade, type: 3}
+  m_Script: {fileID: 11500000, guid: 3e163b44e2cbd43b1b9d9b55ed78cca0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   spawnInstructions:
-  - agentConfiguration: {fileID: 11400000, guid: 57816016cc4b94e069d9d8a6add55324,
-      type: 2}
-    delayToSpawn: 1
-    startingNode: {fileID: 1677426523}
-  - agentConfiguration: {fileID: 11400000, guid: 57816016cc4b94e069d9d8a6add55324,
-      type: 2}
-    delayToSpawn: 3
-    startingNode: {fileID: 1677426523}
-  - agentConfiguration: {fileID: 11400000, guid: 57816016cc4b94e069d9d8a6add55324,
+  - agentConfiguration: {fileID: 11400000, guid: f288f6c0804db40c393d7c70b6cca646,
       type: 2}
     delayToSpawn: 2
     startingNode: {fileID: 1677426523}
-  - agentConfiguration: {fileID: 11400000, guid: 57816016cc4b94e069d9d8a6add55324,
+  - agentConfiguration: {fileID: 11400000, guid: f288f6c0804db40c393d7c70b6cca646,
       type: 2}
     delayToSpawn: 2
     startingNode: {fileID: 1677426523}
-  - agentConfiguration: {fileID: 11400000, guid: 194678e37891244b78d3ad8b21d3f878,
+  - agentConfiguration: {fileID: 11400000, guid: f288f6c0804db40c393d7c70b6cca646,
       type: 2}
     delayToSpawn: 2
     startingNode: {fileID: 1677426523}
-  - agentConfiguration: {fileID: 11400000, guid: 194678e37891244b78d3ad8b21d3f878,
+  - agentConfiguration: {fileID: 11400000, guid: f288f6c0804db40c393d7c70b6cca646,
       type: 2}
     delayToSpawn: 2
     startingNode: {fileID: 1677426523}
-  - agentConfiguration: {fileID: 11400000, guid: 194678e37891244b78d3ad8b21d3f878,
+  - agentConfiguration: {fileID: 11400000, guid: f288f6c0804db40c393d7c70b6cca646,
       type: 2}
     delayToSpawn: 2
     startingNode: {fileID: 1677426523}
-  - agentConfiguration: {fileID: 11400000, guid: 194678e37891244b78d3ad8b21d3f878,
+  - agentConfiguration: {fileID: 11400000, guid: f288f6c0804db40c393d7c70b6cca646,
+      type: 2}
+    delayToSpawn: 2
+    startingNode: {fileID: 1677426523}
+  - agentConfiguration: {fileID: 11400000, guid: f288f6c0804db40c393d7c70b6cca646,
       type: 2}
     delayToSpawn: 2
     startingNode: {fileID: 1677426523}
@@ -4306,7 +4319,11 @@ MonoBehaviour:
       type: 2}
     delayToSpawn: 2
     startingNode: {fileID: 1677426523}
-  timeToNextWave: 10
+  - agentConfiguration: {fileID: 11400000, guid: 57816016cc4b94e069d9d8a6add55324,
+      type: 2}
+    delayToSpawn: 2
+    startingNode: {fileID: 1677426523}
+  waveNumber: 0
 --- !u!43 &2033508779
 Mesh:
   m_ObjectHideFlags: 0
@@ -4552,6 +4569,7 @@ MonoBehaviour:
       type: 2}
     delayToSpawn: 1
     startingNode: {fileID: 1677426523}
+  waveNumber: 0
 --- !u!1 &2063158039
 GameObject:
   m_ObjectHideFlags: 0
@@ -4593,17 +4611,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 2063158039}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e9dbbe0a9162d4ea08b6fb9ee3a23ade, type: 3}
+  m_Script: {fileID: 11500000, guid: 3e163b44e2cbd43b1b9d9b55ed78cca0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   spawnInstructions:
   - agentConfiguration: {fileID: 11400000, guid: f288f6c0804db40c393d7c70b6cca646,
       type: 2}
-    delayToSpawn: 1
-    startingNode: {fileID: 1677426523}
-  - agentConfiguration: {fileID: 11400000, guid: f288f6c0804db40c393d7c70b6cca646,
-      type: 2}
-    delayToSpawn: 3
+    delayToSpawn: 2
     startingNode: {fileID: 1677426523}
   - agentConfiguration: {fileID: 11400000, guid: f288f6c0804db40c393d7c70b6cca646,
       type: 2}
@@ -4625,39 +4639,43 @@ MonoBehaviour:
       type: 2}
     delayToSpawn: 2
     startingNode: {fileID: 1677426523}
-  - agentConfiguration: {fileID: 11400000, guid: 57816016cc4b94e069d9d8a6add55324,
+  - agentConfiguration: {fileID: 11400000, guid: f288f6c0804db40c393d7c70b6cca646,
       type: 2}
     delayToSpawn: 2
     startingNode: {fileID: 1677426523}
-  - agentConfiguration: {fileID: 11400000, guid: 57816016cc4b94e069d9d8a6add55324,
+  - agentConfiguration: {fileID: 11400000, guid: f288f6c0804db40c393d7c70b6cca646,
       type: 2}
     delayToSpawn: 2
     startingNode: {fileID: 1677426523}
-  - agentConfiguration: {fileID: 11400000, guid: 194678e37891244b78d3ad8b21d3f878,
+  - agentConfiguration: {fileID: 11400000, guid: f288f6c0804db40c393d7c70b6cca646,
       type: 2}
     delayToSpawn: 2
     startingNode: {fileID: 1677426523}
-  - agentConfiguration: {fileID: 11400000, guid: 194678e37891244b78d3ad8b21d3f878,
+  - agentConfiguration: {fileID: 11400000, guid: f288f6c0804db40c393d7c70b6cca646,
       type: 2}
     delayToSpawn: 2
     startingNode: {fileID: 1677426523}
-  - agentConfiguration: {fileID: 11400000, guid: 194678e37891244b78d3ad8b21d3f878,
+  - agentConfiguration: {fileID: 11400000, guid: f288f6c0804db40c393d7c70b6cca646,
       type: 2}
     delayToSpawn: 2
     startingNode: {fileID: 1677426523}
-  - agentConfiguration: {fileID: 11400000, guid: 194678e37891244b78d3ad8b21d3f878,
+  - agentConfiguration: {fileID: 11400000, guid: f288f6c0804db40c393d7c70b6cca646,
       type: 2}
     delayToSpawn: 2
     startingNode: {fileID: 1677426523}
-  - agentConfiguration: {fileID: 11400000, guid: 194678e37891244b78d3ad8b21d3f878,
+  - agentConfiguration: {fileID: 11400000, guid: f288f6c0804db40c393d7c70b6cca646,
       type: 2}
     delayToSpawn: 2
     startingNode: {fileID: 1677426523}
-  - agentConfiguration: {fileID: 11400000, guid: 194678e37891244b78d3ad8b21d3f878,
+  - agentConfiguration: {fileID: 11400000, guid: f288f6c0804db40c393d7c70b6cca646,
       type: 2}
     delayToSpawn: 2
     startingNode: {fileID: 1677426523}
-  timeToNextWave: 42
+  - agentConfiguration: {fileID: 11400000, guid: f288f6c0804db40c393d7c70b6cca646,
+      type: 2}
+    delayToSpawn: 2
+    startingNode: {fileID: 1677426523}
+  waveNumber: 0
 --- !u!1 &2066047186
 GameObject:
   m_ObjectHideFlags: 0
@@ -4819,11 +4837,11 @@ MonoBehaviour:
   spawnInstructions:
   - agentConfiguration: {fileID: 11400000, guid: 194678e37891244b78d3ad8b21d3f878,
       type: 2}
-    delayToSpawn: 1
+    delayToSpawn: 2
     startingNode: {fileID: 1677426523}
   - agentConfiguration: {fileID: 11400000, guid: 194678e37891244b78d3ad8b21d3f878,
       type: 2}
-    delayToSpawn: 3
+    delayToSpawn: 2
     startingNode: {fileID: 1677426523}
   - agentConfiguration: {fileID: 11400000, guid: 194678e37891244b78d3ad8b21d3f878,
       type: 2}
@@ -4885,3 +4903,4 @@ MonoBehaviour:
       type: 2}
     delayToSpawn: 2
     startingNode: {fileID: 1677426523}
+  waveNumber: 0
