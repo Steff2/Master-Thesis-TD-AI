@@ -2,7 +2,7 @@
 
 Erstmal auf Halt: (Tower Attack System -> Monster mechanics/functions -> Monster Pathing and life depletion -> Monster&Tower Interaction -> verschiedene Monster&Tower -> MLAgents Integration)
 
-TODO Prototypen: Reset der Szene bei OnEpisodeBegin (=> Reset der Gegner Wave skript und Errors von Gegner reset anschauen -> Waves sind endlich, bei Ende EndEpisode() aufrufen) -> Defense Agent Testtraining durch Waves ->  Zeitgleich oder danach Observationsmethode füllen -> Türme Upgrade in das Training einbringen -> Monster einfach senden können ->  AI Monster schicken lassen
+TODO Prototypen: Defense Agent Testtraining durch Waves ->  Zeitgleich oder danach Observationsmethode füllen -> Türme Upgrade in das Training einbringen -> Monster einfach senden können ->  AI Monster schicken lassen
 
 
 
@@ -36,7 +36,8 @@ Anfang 21.06.2023
 
 
 10.07.2023 - Switch auf Timer class von C# anstelle des propriätären Timers des Beispiels
-11.07.2023 - C# Timer deleted und TimedWave unbenutzt, nur Wave benutzen, Win event eingebaut, Anfang Observationen
+11.07.2023 - C# Timer deleted und TimedWave unbenutzt, nur Wave benutzen, Win event eingebaut, Reset done, Anfang Observationen
+12.07.2023 - Observationen implementiert anhand anderer Beispiele, Config Datei erstellt und etwas rumgespielt. Kein Erfolgreichen durchlauf bisher
 ~ bis 12.07.2023 Aufbau des Agentenskripts finalisieren und einlesen in asymmetrisches 1v1 für MLAgents (Separates Testsystem für asymm. 1v1 ggf.)
 
 ~ bis 09.08.2023 Je nach Fortschritt finalisieren einer Spielerseite für Training (Defense oder Offense)
