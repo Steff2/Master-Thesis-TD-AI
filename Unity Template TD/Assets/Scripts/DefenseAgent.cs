@@ -13,6 +13,13 @@ using Core.Economy;
 public class DefenseAgent : Agent
 {
 
+    private struct PlacedTowerData
+    {
+        public int towerType;
+        public IntVector2 placementGridCoordinates;
+        public int gridTileNumber;
+    }
+
     private Dictionary<int, Tower> towersDictionary;
 
     [SerializeField] private List<TowerPlacementGrid> placementGrids;
@@ -23,13 +30,15 @@ public class DefenseAgent : Agent
     [SerializeField] private float baseHealth;
 
     BufferSensorComponent m_BufferSensor;
-    float[] m_GridOccupationRepresentative = new float[180];
+    private List<PlacedTowerData> m_GridTowerOccupationRepresentative = new List<PlacedTowerData>();
 
     private Tower towertoPlace;
     private int towerIndex;
     private Currency currency;
     private int gridXCoordinateConvertedToContinuousActionScale;
     private int gridYCoordinateConvertedToContinuousActionScale;
+
+    private const int HighestPlacementGridPosition = 180;
 
     public override void Initialize()
     {
@@ -59,15 +68,29 @@ public class DefenseAgent : Agent
 
     public override void CollectObservations(VectorSensor sensor)
     {
-
-
-        sensor.AddObservation(gridXCoordinateConvertedToContinuousActionScale);
-        sensor.AddObservation(gridYCoordinateConvertedToContinuousActionScale);
-        float towerIndexNormalized = (towerIndex - 0) / (3 - 0);
-        sensor.AddObservation(towerIndexNormalized);
-
         //needs to be normalized
-        sensor.AddObservation(currency.currentCurrency);
+        sensor.AddObservation(currency.currentCurrency / 500);
+
+        //Generate for loop while creating a new list of floats for 183 floats
+        for (int i = 0; i < m_GridTowerOccupationRepresentative.Count; i++)
+        {
+            float[] listObservation = new float[HighestPlacementGridPosition + 3];
+
+            try
+            {
+                listObservation[m_GridTowerOccupationRepresentative[i].gridTileNumber] = 1f;
+            }
+            catch (System.IndexOutOfRangeException e)
+            {
+                Debug.Log("Index" + (m_GridTowerOccupationRepresentative[i].gridTileNumber) + "out of range");
+            }
+            listObservation[HighestPlacementGridPosition] = m_GridTowerOccupationRepresentative[i].placementGridCoordinates.x / 18f;
+            listObservation[HighestPlacementGridPosition] = m_GridTowerOccupationRepresentative[i].placementGridCoordinates.y / 10f;
+            listObservation[HighestPlacementGridPosition] = m_GridTowerOccupationRepresentative[i].towerType / 3f;
+
+            m_BufferSensor.AppendObservation(listObservation);
+
+        }
     }
 
     public override void OnEpisodeBegin()
@@ -127,6 +150,12 @@ public class DefenseAgent : Agent
 
         GameUI.instance.m_GridPosition = placementGridCoordinate;
 
+        m_GridTowerOccupationRepresentative.Add(new PlacedTowerData
+        {
+            towerType = towerIndex,
+            placementGridCoordinates = placementGridCoordinate,
+            gridTileNumber = placementGridCoordinate.x * placementGridCoordinate.y
+        });
         //initialize Tower
         GameUI.instance.BuyTower();
         //GameUI.instance.Unpause();
@@ -147,6 +176,7 @@ public class DefenseAgent : Agent
     {
         Debug.Log("Won");
         SetReward(1f);
+        m_GridTowerOccupationRepresentative.Clear();
         LevelManager.instance.ResetGame();
         EndEpisode();
     }
@@ -155,6 +185,7 @@ public class DefenseAgent : Agent
     {
         Debug.Log("Lost");
         SetReward(-1f);
+        m_GridTowerOccupationRepresentative.Clear();
         LevelManager.instance.ResetGame();
         EndEpisode();
     }
