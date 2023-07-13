@@ -36,6 +36,7 @@ behaviors:
       #  sequence_length: 64
       #  memory_size: 256    
     keep_checkpoints: 5
-    max_steps: 20000000
+    checkpoint_interval: 50000
+    max_steps: 2000000
     time_horizon: 64
-    summary_freq: 60000
+    summary_freq: 10000
