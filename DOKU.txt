@@ -27,3 +27,6 @@ Wichtig gegen Anfang war das richtige Layout des Tower Defense spiels zu finden 
 11.07.2023 C# Timer Benutzung nicht möglich, da threaded und get_gameObject methoden nicht aufrufbar in Threads (was benutzt wurde -> wäre zu unnötig komplex gewesen das zu versuchen zu ändern)
 	   jetzt einfach TimedWave weggelassen und Wave nur benutzt
 	   Angefangen mit Observationen von TowerBuild coordinates, Tower type and Currency. Eventuelles Problem mit Aufrufreihenfolge, da die variables in BuildTower assigned werden, aber in CollectObservations abgerufen (needs to be tested)
+
+
+13.07.2023 Setup der Szene für Training optimiert -> kleineres Grid und ausstellen der Animationen und Sounds. anfänglich lange Testläufe ~30min - ~1h30min
