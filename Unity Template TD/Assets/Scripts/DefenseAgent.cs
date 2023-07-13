@@ -38,7 +38,7 @@ public class DefenseAgent : Agent
     private int gridXCoordinateConvertedToContinuousActionScale;
     private int gridYCoordinateConvertedToContinuousActionScale;
 
-    private const int HighestPlacementGridPosition = 180;
+    private const int HighestPlacementGridPosition = 70;
 
     public override void Initialize()
     {
@@ -84,8 +84,8 @@ public class DefenseAgent : Agent
             {
                 Debug.Log("Index" + (m_GridTowerOccupationRepresentative[i].gridTileNumber) + "out of range");
             }
-            listObservation[HighestPlacementGridPosition] = m_GridTowerOccupationRepresentative[i].placementGridCoordinates.x / 18f;
-            listObservation[HighestPlacementGridPosition] = m_GridTowerOccupationRepresentative[i].placementGridCoordinates.y / 10f;
+            listObservation[HighestPlacementGridPosition] = m_GridTowerOccupationRepresentative[i].placementGridCoordinates.x / 14f;
+            listObservation[HighestPlacementGridPosition] = m_GridTowerOccupationRepresentative[i].placementGridCoordinates.y / 5f;
             listObservation[HighestPlacementGridPosition] = m_GridTowerOccupationRepresentative[i].towerType / 3f;
 
             m_BufferSensor.AppendObservation(listObservation);
