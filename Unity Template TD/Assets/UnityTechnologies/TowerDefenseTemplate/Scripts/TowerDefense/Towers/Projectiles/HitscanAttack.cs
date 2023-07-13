@@ -73,10 +73,10 @@ namespace TowerDefense.Towers.Projectiles
 			}
 			
 			// effects
-			ParticleSystem pfxPrefab = m_Damager.collisionParticles;
+			/*ParticleSystem pfxPrefab = m_Damager.collisionParticles;
 			var attackEffect = Poolable.TryGetPoolable<ParticleSystem>(pfxPrefab.gameObject);
 			attackEffect.transform.position = m_Enemy.position;
-			attackEffect.Play();
+			attackEffect.Play();*/
 			
 			m_Enemy.TakeDamage(m_Damager.damage, m_Enemy.position, m_Damager.alignmentProvider);
 			m_PauseTimer = true;

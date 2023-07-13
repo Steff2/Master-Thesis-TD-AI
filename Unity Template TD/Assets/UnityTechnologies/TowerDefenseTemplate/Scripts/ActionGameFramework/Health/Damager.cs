@@ -82,10 +82,10 @@ namespace ActionGameFramework.Health
 				return;
 			}
 
-			var pfx = Poolable.TryGetPoolable<ParticleSystem>(collisionParticles.gameObject);
+			/*var pfx = Poolable.TryGetPoolable<ParticleSystem>(collisionParticles.gameObject);
 
 			pfx.transform.position = transform.position;
-			pfx.Play();
+			pfx.Play();*/
 		}
 	}
 }

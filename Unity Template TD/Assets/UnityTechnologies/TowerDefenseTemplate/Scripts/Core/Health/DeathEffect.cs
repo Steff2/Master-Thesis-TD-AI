@@ -40,7 +40,7 @@ namespace Core.Health
 				m_Damageable.died -= OnDied;
 			}
 			m_Damageable = damageable;
-			m_Damageable.died += OnDied;
+			//m_Damageable.died += OnDied;
 		}
 
 		/// <summary>
@@ -64,9 +64,9 @@ namespace Core.Health
 				return;
 			}
 
-			var pfx = Poolable.TryGetPoolable<ParticleSystem>(deathParticleSystemPrefab.gameObject);
-			pfx.transform.position = transform.position + deathEffectOffset;
-			pfx.Play();
+			//var pfx = Poolable.TryGetPoolable<ParticleSystem>(deathParticleSystemPrefab.gameObject);
+			//pfx.transform.position = transform.position + deathEffectOffset;
+			//pfx.Play();
 		}
 	}
 }
