@@ -41,6 +41,7 @@ Anfang 21.06.2023
 ~ bis 12.07.2023 Aufbau des Agentenskripts finalisieren und einlesen in asymmetrisches 1v1 für MLAgents (Separates Testsystem für asymm. 1v1 ggf.)
 
 13.07.2023 - Animationen und Sounds für effizienz ausgemacht, Grid verkleinert, Trainingstestläufe
+14.07.2023 - Behebung von Fehlern in Turm Platzierung (size und nummern für Zugriff waren falsch, etc... man kennts), langes Training und kleine Verbesserung/kleiner fix
 ~ bis 09.08.2023 Je nach Fortschritt finalisieren einer Spielerseite für Training (Defense oder Offense)
 
 ~ bis 30.08.2023 Zusatzzeit für die Kalibrierung des anderen Spielers
