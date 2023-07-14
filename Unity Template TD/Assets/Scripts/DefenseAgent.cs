@@ -80,13 +80,13 @@ public class DefenseAgent : Agent
             {
                 listObservation[m_GridTowerOccupationRepresentative[i].gridTileNumber] = 1f;
             }
-            catch (System.IndexOutOfRangeException e)
+            catch (System.IndexOutOfRangeException)
             {
                 Debug.Log("Index" + (m_GridTowerOccupationRepresentative[i].gridTileNumber) + "out of range");
             }
-            listObservation[HighestPlacementGridPosition] = m_GridTowerOccupationRepresentative[i].placementGridCoordinates.x / 14f;
-            listObservation[HighestPlacementGridPosition] = m_GridTowerOccupationRepresentative[i].placementGridCoordinates.y / 5f;
-            listObservation[HighestPlacementGridPosition] = m_GridTowerOccupationRepresentative[i].towerType / 3f;
+            listObservation[HighestPlacementGridPosition] = m_GridTowerOccupationRepresentative[i].placementGridCoordinates.x / placementGrids[0].dimensions.x - 1;
+            listObservation[HighestPlacementGridPosition + 1] = m_GridTowerOccupationRepresentative[i].placementGridCoordinates.y / placementGrids[0].dimensions.y - 1;
+            listObservation[HighestPlacementGridPosition + 2] = m_GridTowerOccupationRepresentative[i].towerType / 3f;
 
             m_BufferSensor.AppendObservation(listObservation);
 
@@ -143,8 +143,8 @@ public class DefenseAgent : Agent
 
         if (!GameUI.instance.isBuilding) GameUI.instance.SetToBuildMode(towertoPlace);
 
-        gridXCoordinateConvertedToContinuousActionScale = Mathf.RoundToInt (Mathf.Abs (continuousGridXCoordinate) * placementArea.dimensions.x);
-        gridYCoordinateConvertedToContinuousActionScale = Mathf.RoundToInt (Mathf.Abs (continuousGridYCoordinate) * placementArea.dimensions.y);
+        gridXCoordinateConvertedToContinuousActionScale = Mathf.RoundToInt (Mathf.Abs (continuousGridXCoordinate) * placementArea.dimensions.x - 1);
+        gridYCoordinateConvertedToContinuousActionScale = Mathf.RoundToInt (Mathf.Abs (continuousGridYCoordinate) * placementArea.dimensions.y - 1);
 
         var placementGridCoordinate = new IntVector2(gridXCoordinateConvertedToContinuousActionScale, gridYCoordinateConvertedToContinuousActionScale);
 
@@ -154,7 +154,7 @@ public class DefenseAgent : Agent
         {
             towerType = towerIndex,
             placementGridCoordinates = placementGridCoordinate,
-            gridTileNumber = placementGridCoordinate.x * placementGridCoordinate.y
+            gridTileNumber = Mathf.Clamp(placementGridCoordinate.x, 1, placementArea.dimensions.x) * Mathf.Clamp(placementGridCoordinate.x, 1, placementArea.dimensions.y) - 1
         });
         //initialize Tower
         GameUI.instance.BuyTower();
