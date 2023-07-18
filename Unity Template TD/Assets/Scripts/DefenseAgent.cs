@@ -9,10 +9,13 @@ using TowerDefense.Towers.Placement;
 using Core.Utilities;
 using TowerDefense.UI.HUD;
 using Core.Economy;
+using System.IO;
 
 public class DefenseAgent : Agent
 {
 
+    FileWriter streamWriter = new FileWriter("DefenseAgent", "txt");
+    protected int fileNumber = 1;
     private struct PlacedTowerData
     {
         public int towerType;
@@ -90,6 +93,10 @@ public class DefenseAgent : Agent
 
             m_BufferSensor.AppendObservation(listObservation);
 
+            //streamWriter.SetStoredData(m_GridTowerOccupationRepresentative[i].gridTileNumber.ToString());
+            //streamWriter.SetStoredData(listObservation[HighestPlacementGridPosition].ToString());
+            //streamWriter.SetStoredData(listObservation[HighestPlacementGridPosition + 1].ToString());
+            //streamWriter.SetStoredData(listObservation[HighestPlacementGridPosition + 2].ToString());
         }
     }
 
@@ -174,8 +181,10 @@ public class DefenseAgent : Agent
 
     public void Win()
     {
-        Debug.Log("Won");
         SetReward(1f);
+        //streamWriter.SetStoredData("\n" + "Won" + "\n");
+        //streamWriter = new FileWriter("DefenseAgent" + fileNumber, "txt");
+        //fileNumber++;
         m_GridTowerOccupationRepresentative.Clear();
         LevelManager.instance.ResetGame();
         EndEpisode();
@@ -183,8 +192,10 @@ public class DefenseAgent : Agent
 
     public void Loss()
     {
-        Debug.Log("Lost");
         SetReward(-1f);
+        //streamWriter.SetStoredData("\n" + "Lost" + "\n");
+        //streamWriter = new FileWriter("DefenseAgent" + fileNumber, "txt");
+        //fileNumber++;
         m_GridTowerOccupationRepresentative.Clear();
         LevelManager.instance.ResetGame();
         EndEpisode();
@@ -193,5 +204,10 @@ public class DefenseAgent : Agent
     public void ResetBaseHealth()
     {         
         homeBase.configuration.SetHealth(baseHealth);
+    }
+
+    public void OnApplicationQuit()
+    {
+        streamWriter.WriteString();
     }
 }
