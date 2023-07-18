@@ -6,8 +6,8 @@ behaviors:
       batch_size: 1024
       #size of new experiences before policy model update
       buffer_size: 10240
-      #learning rate along gradient descent - should decrease is training unstable and no consistent reward increase
-      learning_rate: 0.0003
+      #learning rate along gradient descent - should decrease if training unstable and no consistent reward increase
+      learning_rate: 0.00005
       #randomness - if entropy drop too quickly, increase
       beta: 0.01
       #speed of policy change - small is more stable, but slower
