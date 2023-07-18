@@ -102,7 +102,6 @@ namespace TowerDefense.Level
 			if (hasNext)
 			{
 				//Generate console message for wave number + m_CurrentIndex
-				Debug.Log("Wave " + waveNumber + " SpawnIndex: " + m_CurrentIndex);
 				SpawnInstruction nextSpawnInstruction = spawnInstructions[m_CurrentIndex];
 				if (nextSpawnInstruction.delayToSpawn <= 0f)
 				{

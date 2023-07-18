@@ -370,7 +370,6 @@ namespace TowerDefense.Level
 		{
             currency = new Currency(startingCurrency);
             currencyGainer.Initialize(currency);
-			Debug.Log("Current Currency: " + currency.currentCurrency);
         }
 
         public void ResetGame()
