@@ -41,7 +41,7 @@ public class DefenseAgent : Agent
     private int gridXCoordinateConvertedToContinuousActionScale;
     private int gridYCoordinateConvertedToContinuousActionScale;
 
-    private const int HighestPlacementGridPosition = 70;
+    private const int HighestPlacementGridPosition = 14;
 
     public override void Initialize()
     {
@@ -58,7 +58,6 @@ public class DefenseAgent : Agent
         towertoPlace = null;
         towersDictionary = new Dictionary<int, Tower>();
         placementArea = placementGrids[0];
-        if (GameUI.instanceExists) { GameUI.instance.m_CurrentArea = placementArea; }
 
         var i = 0;
         //Store items in LevelManager.instance.towerLibrary in towersDictionary
@@ -72,7 +71,7 @@ public class DefenseAgent : Agent
     public override void CollectObservations(VectorSensor sensor)
     {
         //needs to be normalized
-        sensor.AddObservation(currency.currentCurrency / 500);
+        //sensor.AddObservation(currency.currentCurrency / 500);
 
         //Generate for loop while creating a new list of floats for 183 floats
         for (int i = 0; i < m_GridTowerOccupationRepresentative.Count; i++)
@@ -102,6 +101,8 @@ public class DefenseAgent : Agent
 
     public override void OnEpisodeBegin()
     {
+        if (GameUI.instanceExists) { GameUI.instance.m_CurrentArea = placementArea; }
+
         ResetBaseHealth();
     }
     public void BuildTower(ActionBuffers actions)
@@ -111,7 +112,7 @@ public class DefenseAgent : Agent
         var continuousGridXCoordinate = actions.ContinuousActions[0];
         var continuousGridYCoordinate = actions.ContinuousActions[1];
 
-        var tower = towersDictionary[actions.DiscreteActions[0]];
+        var tower = towersDictionary[discreteTowerTypeSelector];
 
         towerIndex = discreteTowerTypeSelector;
         //Generate switch case of discreteTowerTypeSelector
@@ -206,8 +207,8 @@ public class DefenseAgent : Agent
         homeBase.configuration.SetHealth(baseHealth);
     }
 
-    public void OnApplicationQuit()
+    /*public void OnApplicationQuit()
     {
         streamWriter.WriteString();
-    }
+    }*/
 }
