@@ -48,6 +48,8 @@ Anfang 21.06.2023
 18.07.2023 - FileSaver Class (aber lagged zu much), kein Progress in Training, Anpassung der config learning_rate, Notwendigkeit der Vereinfachung des Szenarios?
 19.07.2023 - Nur 1 Reihe mit 14 grids, Untersuchung des Trainings um bessere Einsicht auf einen Grund für das Ergebnis zu bekommen, starken Memory leak versucht zu fixen und einfach alles resettet da nichts fruchtvolles gemacht wurde,
 	     versucht mehrere Environments zu machen - nicht lange möglich durch memory leak
+
+21.07.2023 - baseHealth verändert, keine relative Veränderung im Training, außer dass Std. Abweichung ziemlich geschwankt hat. Training war fast immer über 0.5
 ~ bis 09.08.2023 Je nach Fortschritt finalisieren einer Spielerseite für Training (Defense oder Offense)
 
 ~ bis 30.08.2023 Zusatzzeit für die Kalibrierung des anderen Spielers
