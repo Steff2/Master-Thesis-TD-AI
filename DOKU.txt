@@ -36,3 +36,7 @@ Wichtig gegen Anfang war das richtige Layout des Tower Defense spiels zu finden 
 
 
 18.07.2023 StreamWriter klasse geschrieben um Observations zu überprüfen, hat zu viel lag sobald Funktion aufgerufen wird davon, daher aus Eis bisher da nicht notwendig - weiterhin wahrscheinlich weitere Vereinfachung der Szene notwendig zum Trainieren, da std. dev. nicht abnimmt und Rew. nicht konstant zunimmt
+
+
+
+21.07.2023 - baseHealth für Training verändert - keine gute Änderung bisher, aber auf einem richtigen Pfad, Training hat anders ausgesehen in der Statistik
