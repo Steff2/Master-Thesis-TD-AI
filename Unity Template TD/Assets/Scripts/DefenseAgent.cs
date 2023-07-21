@@ -72,7 +72,7 @@ public class DefenseAgent : Agent
     {
         //needs to be normalized
         //sensor.AddObservation(currency.currentCurrency / 500);
-
+        sensor.AddObservation(homeBase.configuration.currentHealth / baseHealth);
         //Generate for loop while creating a new list of floats for 183 floats
         for (int i = 0; i < m_GridTowerOccupationRepresentative.Count; i++)
         {
@@ -99,6 +99,10 @@ public class DefenseAgent : Agent
         }
     }
 
+    public void Update()
+    {
+        Debug.Log(homeBase.configuration.currentHealth);
+    }
     public override void OnEpisodeBegin()
     {
         if (GameUI.instanceExists) { GameUI.instance.m_CurrentArea = placementArea; }
