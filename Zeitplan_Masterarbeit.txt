@@ -50,6 +50,10 @@ Anfang 21.06.2023
 	     versucht mehrere Environments zu machen - nicht lange möglich durch memory leak
 
 21.07.2023 - baseHealth verändert, keine relative Veränderung im Training, außer dass Std. Abweichung ziemlich geschwankt hat. Training war fast immer über 0.5
+
+
+
+26.07.2023 - Änderungen der Config Datei um zu schauen ob das Training dadurch Positiv verändert wird (u.a. SAC versucht) -> keine Veränderung
 ~ bis 09.08.2023 Je nach Fortschritt finalisieren einer Spielerseite für Training (Defense oder Offense)
 
 ~ bis 30.08.2023 Zusatzzeit für die Kalibrierung des anderen Spielers
