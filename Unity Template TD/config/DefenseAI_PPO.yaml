@@ -1,19 +1,19 @@
 behaviors:
   DefenseAgent:
-    trainer_type: ppo
+    trainer_type: sac
     hyperparameters:
       #size per batch of new experiences, several times lower than buffer_size, high for continuous low for discrete
-      batch_size: 1024
+      batch_size: 2048
       #size of new experiences before policy model update
-      buffer_size: 10240
+      buffer_size: 20480
       #learning rate along gradient descent - should decrease if training unstable and no consistent reward increase
       learning_rate: 0.00005
       #randomness - if entropy drop too quickly, increase
-      beta: 0.01
+      beta: 0.008
       #speed of policy change - small is more stable, but slower
-      epsilon: 0.2
+      epsilon: 0.15
       #bias towards current reward
-      lambd: 0.95
+      lambd: 0.91
       num_epoch: 3
       learning_rate_schedule: linear
       
