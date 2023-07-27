@@ -45,3 +45,4 @@ Wichtig gegen Anfang war das richtige Layout des Tower Defense spiels zu finden 
 
 
 26.07.2023 - SAC als trainertyp versucht, aber keine sichtlichen Änderungen im Training - Viele Freezes während SAC training, dadurch sehr sehr langsames Training
+27.06.2023 - Bis nächstes Meeting Anfang mit AttackAgent und Umbau der Code Struktur für Units senden und alles, dass damit zusammenhängt
