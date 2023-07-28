@@ -10,8 +10,11 @@ using Core.Utilities;
 using TowerDefense.UI.HUD;
 using Core.Economy;
 using System.IO;
+using TowerDefense.Agents.Data;
+using TowerDefense.Nodes;
+using TowerDefense.Agents;
 
-public class AttackAgent : Agent
+public class AttackAgent : Unity.MLAgents.Agent
 {
 
     //FileWriter streamWriter = new FileWriter("DefenseAgent", "txt");
@@ -23,10 +26,12 @@ public class AttackAgent : Agent
         public int gridTileNumber;
     }
 
-    public List<Agent> UnitsDict;
+    public List<SpawnInstruction> UnitsSpawnInstructionsDict;
 
     [SerializeField] private List<TowerPlacementGrid> placementGrids;
     private TowerPlacementGrid placementArea;
+    protected List<TowerDefense.Agents.Agent> spawnedAgents;
+
 
 
     [SerializeField] private PlayerHomeBase homeBase;
@@ -35,17 +40,18 @@ public class AttackAgent : Agent
     BufferSensorComponent m_BufferSensor;
     private List<PlacedTowerData> m_GridTowerOccupationRepresentative = new List<PlacedTowerData>();
 
-    private Agent unitToSend;
-    private int towerIndex;
+    private SpawnInstruction unitToSend;
     private Currency currency;
-    private int gridXCoordinateConvertedToContinuousActionScale;
-    private int gridYCoordinateConvertedToContinuousActionScale;
+
 
     private const int HighestPlacementGridPosition = 14;
 
+    private const int spawnDelayTime = 2;
+    private float spawnDelayTimer = 0;
+
     public override void Initialize()
     {
-
+        spawnDelayTimer = spawnDelayTime;
         m_BufferSensor = GetComponent<BufferSensorComponent>();
 
         LevelManager.instance.resetLose += Loss;
@@ -56,7 +62,7 @@ public class AttackAgent : Agent
 
         currency = LevelManager.instance.currency;
         unitToSend = null;
-        UnitsDict = new List<Agent>();
+        UnitsSpawnInstructionsDict = new List<SpawnInstruction>();
         placementArea = placementGrids[0];
     }
 
@@ -92,6 +98,11 @@ public class AttackAgent : Agent
 
     public void Update()
     {
+        if (spawnDelayTimer > 0)
+        {
+            spawnDelayTimer -= Time.deltaTime;
+        }
+
         Debug.Log(homeBase.configuration.currentHealth);
     }
     public override void OnEpisodeBegin()
@@ -107,60 +118,30 @@ public class AttackAgent : Agent
         var continuousGridXCoordinate = actions.ContinuousActions[0];
         var continuousGridYCoordinate = actions.ContinuousActions[1];
 
-        var tower = UnitsDict[discreteTowerTypeSelector];
-
-        towerIndex = discreteTowerTypeSelector;
         //Generate switch case of discreteTowerTypeSelector
         switch (discreteTowerTypeSelector)
         {
             case 0:
-                unitToSend = UnitsDict[0];
+                unitToSend = UnitsSpawnInstructionsDict[0];
                 break;
             case 1:
-                unitToSend = UnitsDict[1];
+                unitToSend = UnitsSpawnInstructionsDict[1];
                 break;
             case 2:
-                unitToSend = UnitsDict[2];
+                unitToSend = UnitsSpawnInstructionsDict[2];
                 break;
             default:
                 break;
         }
 
-        /*TowerPlacementGrid placementGrid = null;
-        //Generate switch case of discreteplacementGridSelector
-        switch (discreteplacementGridSelector)
+        if(spawnDelayTimer <= 0)
         {
-            case 0:
-                placementGrid = placementGrids[0];
-                break;
-            case 1:
-                placementGrid = placementGrids[1];
-                break;
-            case 2:
-                placementGrid = placementGrids[2];
-                break;
-            default:
-                break;
-        }*/
+            if (unitToSend == null) return;
 
+            SpawnAgent(unitToSend.agentConfiguration, unitToSend.startingNode);
 
-        gridXCoordinateConvertedToContinuousActionScale = Mathf.RoundToInt (Mathf.Abs (continuousGridXCoordinate) * placementArea.dimensions.x - 1);
-        gridYCoordinateConvertedToContinuousActionScale = Mathf.RoundToInt (Mathf.Abs (continuousGridYCoordinate) * placementArea.dimensions.y - 1);
-
-        var placementGridCoordinate = new IntVector2(gridXCoordinateConvertedToContinuousActionScale, gridYCoordinateConvertedToContinuousActionScale);
-
-        GameUI.instance.m_GridPosition = placementGridCoordinate;
-
-        m_GridTowerOccupationRepresentative.Add(new PlacedTowerData
-        {
-            towerType = towerIndex,
-            placementGridCoordinates = placementGridCoordinate,
-            gridTileNumber = Mathf.Clamp(placementGridCoordinate.x, 1, placementArea.dimensions.x) * Mathf.Clamp(placementGridCoordinate.x, 1, placementArea.dimensions.y) - 1
-        });
-        //initialize Tower
-        GameUI.instance.BuyTower();
-        //GameUI.instance.Unpause();
-
+            spawnDelayTimer = spawnDelayTime;
+        }
     }
 
     public override void OnActionReceived(ActionBuffers actions)
@@ -204,4 +185,22 @@ public class AttackAgent : Agent
     {
         streamWriter.WriteString();
     }*/
+    protected virtual void SpawnAgent(AgentConfiguration agentConfig, Node node)
+    {
+        Vector3 spawnPosition = node.GetRandomPointInNodeArea();
+
+        var poolable = Poolable.TryGetPoolable<Poolable>(agentConfig.agentPrefab.gameObject);
+        if (poolable == null)
+        {
+            return;
+        }
+        var agentInstance = poolable.GetComponent<TowerDefense.Agents.Agent>();
+        agentInstance.transform.position = spawnPosition;
+        agentInstance.Initialize();
+        agentInstance.SetNode(node);
+        agentInstance.transform.rotation = node.transform.rotation;
+        spawnedAgents.Add(agentInstance);
+    }
 }
+
+
