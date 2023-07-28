@@ -58,6 +58,12 @@ Anfang 21.06.2023
 
 
 26.07.2023 - Änderungen der Config Datei um zu schauen ob das Training dadurch Positiv verändert wird (u.a. SAC versucht) -> keine Veränderung
+27.07.2023 - Planung AttackAgent
+28.07.2023 - Einheiten senden, MLAgents Fehler(?), Änderungen Action Methode
+
+
+
+
 ~ bis 09.08.2023 Je nach Fortschritt finalisieren einer Spielerseite für Training (Defense oder Offense)
 
 ~ bis 30.08.2023 Zusatzzeit für die Kalibrierung des anderen Spielers
