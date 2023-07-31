@@ -1,5 +1,5 @@
 behaviors:
-  DefenseAgent:
+  AttackAgent:
     trainer_type: ppo
     hyperparameters:
       #size per batch of new experiences, several times lower than buffer_size, high for continuous low for discrete
