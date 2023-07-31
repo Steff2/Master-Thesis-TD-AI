@@ -808,6 +808,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1043370464 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6118834383919740751, guid: 4c4a37ecbd32996459f7c3e130f42ec9,
+    type: 3}
+  m_PrefabInstance: {fileID: 3629148609067440909}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5edfcc2c7442e48d7892db93d6807a1e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1160528542 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 294840325043106275, guid: 4c4a37ecbd32996459f7c3e130f42ec9,
@@ -854,15 +866,15 @@ MonoBehaviour:
     maxStep: 0
   hasUpgradedFromAgentParameters: 1
   MaxStep: 5000
-  UnitsSpawnInstructionsDict:
+  UnitsSpawnInstructionsList:
   - agentConfiguration: {fileID: 11400000, guid: 194678e37891244b78d3ad8b21d3f878,
       type: 2}
     delayToSpawn: 2
-    startingNode: {fileID: 2062280055}
+    startingNode: {fileID: 1043370464}
   - agentConfiguration: {fileID: 11400000, guid: f288f6c0804db40c393d7c70b6cca646,
       type: 2}
     delayToSpawn: 2
-    startingNode: {fileID: 2062280055}
+    startingNode: {fileID: 1043370464}
   placementGrids: []
   homeBase: {fileID: 1160528542}
   baseHealth: 5
@@ -1031,18 +1043,6 @@ Mesh:
     offset: 0
     size: 0
     path: 
---- !u!114 &2062280055 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6118834383919740751, guid: 4c4a37ecbd32996459f7c3e130f42ec9,
-    type: 3}
-  m_PrefabInstance: {fileID: 3629148609067440909}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5edfcc2c7442e48d7892db93d6807a1e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &3629148609067440909
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1239,12 +1239,12 @@ PrefabInstance:
     - target: {fileID: 2439678905690309166, guid: 4c4a37ecbd32996459f7c3e130f42ec9,
         type: 3}
       propertyPath: m_Size.z
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2439678905690309166, guid: 4c4a37ecbd32996459f7c3e130f42ec9,
         type: 3}
       propertyPath: m_Center.z
-      value: 0.5
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 3787631206589671360, guid: 4c4a37ecbd32996459f7c3e130f42ec9,
         type: 3}
@@ -1376,6 +1376,26 @@ PrefabInstance:
       propertyPath: m_BrainParameters.VectorObservationSize
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3946091242109359491, guid: 4c4a37ecbd32996459f7c3e130f42ec9,
+        type: 3}
+      propertyPath: m_BrainParameters.VectorActionSize.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3946091242109359491, guid: 4c4a37ecbd32996459f7c3e130f42ec9,
+        type: 3}
+      propertyPath: m_BrainParameters.VectorActionSize.Array.data[0]
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3946091242109359491, guid: 4c4a37ecbd32996459f7c3e130f42ec9,
+        type: 3}
+      propertyPath: m_BrainParameters.m_ActionSpec.m_NumContinuousActions
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3946091242109359491, guid: 4c4a37ecbd32996459f7c3e130f42ec9,
+        type: 3}
+      propertyPath: m_BrainParameters.m_ActionSpec.BranchSizes.Array.data[0]
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4003221902207273438, guid: 4c4a37ecbd32996459f7c3e130f42ec9,
         type: 3}
       propertyPath: m_IsActive
@@ -1384,7 +1404,22 @@ PrefabInstance:
     - target: {fileID: 4310835506390697583, guid: 4c4a37ecbd32996459f7c3e130f42ec9,
         type: 3}
       propertyPath: dimensions.y
-      value: 1
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4636944975621759438, guid: 4c4a37ecbd32996459f7c3e130f42ec9,
+        type: 3}
+      propertyPath: startingCurrency
+      value: 999
+      objectReference: {fileID: 0}
+    - target: {fileID: 4636944975621759438, guid: 4c4a37ecbd32996459f7c3e130f42ec9,
+        type: 3}
+      propertyPath: alwaysGainCurrency
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4636944975621759438, guid: 4c4a37ecbd32996459f7c3e130f42ec9,
+        type: 3}
+      propertyPath: currencyGainer.constantCurrencyAddition
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5301888238094782720, guid: 4c4a37ecbd32996459f7c3e130f42ec9,
         type: 3}
@@ -1720,7 +1755,7 @@ PrefabInstance:
     - target: {fileID: 7831414276968929264, guid: 4c4a37ecbd32996459f7c3e130f42ec9,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 9.5
+      value: 8.5
       objectReference: {fileID: 0}
     - target: {fileID: 8456917811436846831, guid: 4c4a37ecbd32996459f7c3e130f42ec9,
         type: 3}
@@ -1752,6 +1787,7 @@ PrefabInstance:
     - {fileID: 8456917811436846831, guid: 4c4a37ecbd32996459f7c3e130f42ec9, type: 3}
     - {fileID: 5307145374552953663, guid: 4c4a37ecbd32996459f7c3e130f42ec9, type: 3}
     - {fileID: 222753206105824089, guid: 4c4a37ecbd32996459f7c3e130f42ec9, type: 3}
+    - {fileID: 1620137606019639088, guid: 4c4a37ecbd32996459f7c3e130f42ec9, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 2840755935321706754, guid: 4c4a37ecbd32996459f7c3e130f42ec9,
