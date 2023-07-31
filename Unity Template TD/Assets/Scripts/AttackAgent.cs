@@ -26,7 +26,7 @@ public class AttackAgent : Unity.MLAgents.Agent
         public int gridTileNumber;
     }
 
-    public List<SpawnInstruction> UnitsSpawnInstructionsDict;
+    public List<SpawnInstruction> UnitsSpawnInstructionsList;
 
     [SerializeField] private List<TowerPlacementGrid> placementGrids;
     private TowerPlacementGrid placementArea;
@@ -54,46 +54,22 @@ public class AttackAgent : Unity.MLAgents.Agent
         spawnDelayTimer = spawnDelayTime;
         m_BufferSensor = GetComponent<BufferSensorComponent>();
 
+        spawnedAgents = new List<TowerDefense.Agents.Agent> ();
+
         LevelManager.instance.resetLose += Loss;
         LevelManager.instance.resetWin += Win;
         LevelManager.instance.homeBases[0].resetbaseHealth += ResetBaseHealth;
 
-        LevelManager.instance.BuildingCompleted();
-
         currency = LevelManager.instance.currency;
         unitToSend = null;
-        UnitsSpawnInstructionsDict = new List<SpawnInstruction>();
-        placementArea = placementGrids[0];
+
+        Setup();
+        //placementArea = placementGrids[0];
     }
 
     public override void CollectObservations(VectorSensor sensor)
     {
-        //sensor.AddObservation(currency.currentCurrency / 500);
         sensor.AddObservation(homeBase.configuration.currentHealth / baseHealth);
-        //Generate for loop while creating a new list of floats for 183 floats
-        /*for (int i = 0; i < m_GridTowerOccupationRepresentative.Count; i++)
-        {
-            float[] listObservation = new float[HighestPlacementGridPosition + 3];
-
-            try
-            {
-                listObservation[m_GridTowerOccupationRepresentative[i].gridTileNumber] = 1f;
-            }
-            catch (System.IndexOutOfRangeException)
-            {
-                Debug.Log("Index" + (m_GridTowerOccupationRepresentative[i].gridTileNumber) + "out of range");
-            }
-            listObservation[HighestPlacementGridPosition] = m_GridTowerOccupationRepresentative[i].placementGridCoordinates.x / placementGrids[0].dimensions.x - 1;
-            listObservation[HighestPlacementGridPosition + 1] = m_GridTowerOccupationRepresentative[i].placementGridCoordinates.y / placementGrids[0].dimensions.y - 1;
-            listObservation[HighestPlacementGridPosition + 2] = m_GridTowerOccupationRepresentative[i].towerType / 3f;
-
-            m_BufferSensor.AppendObservation(listObservation);
-
-            //streamWriter.SetStoredData(m_GridTowerOccupationRepresentative[i].gridTileNumber.ToString());
-            //streamWriter.SetStoredData(listObservation[HighestPlacementGridPosition].ToString());
-            //streamWriter.SetStoredData(listObservation[HighestPlacementGridPosition + 1].ToString());
-            //streamWriter.SetStoredData(listObservation[HighestPlacementGridPosition + 2].ToString());
-        }*/
     }
 
     public void Update()
@@ -114,21 +90,14 @@ public class AttackAgent : Unity.MLAgents.Agent
     public void BuildTower(ActionBuffers actions)
     {
         var discreteTowerTypeSelector = actions.DiscreteActions[0];
-        //var discreteplacementGridSelector = actions.DiscreteActions[1];
-        var continuousGridXCoordinate = actions.ContinuousActions[0];
-        var continuousGridYCoordinate = actions.ContinuousActions[1];
 
-        //Generate switch case of discreteTowerTypeSelector
         switch (discreteTowerTypeSelector)
         {
             case 0:
-                unitToSend = UnitsSpawnInstructionsDict[0];
+                unitToSend = UnitsSpawnInstructionsList[0];
                 break;
             case 1:
-                unitToSend = UnitsSpawnInstructionsDict[1];
-                break;
-            case 2:
-                unitToSend = UnitsSpawnInstructionsDict[2];
+                unitToSend = UnitsSpawnInstructionsList[1];
                 break;
             default:
                 break;
@@ -138,9 +107,9 @@ public class AttackAgent : Unity.MLAgents.Agent
         {
             if (unitToSend == null) return;
 
-            SpawnAgent(unitToSend.agentConfiguration, unitToSend.startingNode);
-
             spawnDelayTimer = spawnDelayTime;
+
+            SpawnAgent(unitToSend.agentConfiguration, unitToSend.startingNode);
         }
     }
 
@@ -154,25 +123,33 @@ public class AttackAgent : Unity.MLAgents.Agent
         base.Heuristic(actionsOut);
     }
 
-    public void Win()
+    protected void Win()
     {
         SetReward(1f);
         //streamWriter.SetStoredData("\n" + "Won" + "\n");
         //streamWriter = new FileWriter("DefenseAgent" + fileNumber, "txt");
         //fileNumber++;
-        m_GridTowerOccupationRepresentative.Clear();
+        //m_GridTowerOccupationRepresentative.Clear();
         LevelManager.instance.ResetGame();
+        for (int i = 0; i < spawnedAgents.Count; i++)
+        {
+            spawnedAgents[i].KillAgent();
+        }
         EndEpisode();
     }
 
-    public void Loss()
+    protected void Loss()
     {
         SetReward(-1f);
         //streamWriter.SetStoredData("\n" + "Lost" + "\n");
         //streamWriter = new FileWriter("DefenseAgent" + fileNumber, "txt");
         //fileNumber++;
-        m_GridTowerOccupationRepresentative.Clear();
+        //m_GridTowerOccupationRepresentative.Clear();
         LevelManager.instance.ResetGame();
+        for(int i = 0; i < spawnedAgents.Count; i++)
+        {
+            spawnedAgents[i].KillAgent();
+        }
         EndEpisode();
     }
 
@@ -181,10 +158,6 @@ public class AttackAgent : Unity.MLAgents.Agent
         homeBase.configuration.SetHealth(baseHealth);
     }
 
-    /*public void OnApplicationQuit()
-    {
-        streamWriter.WriteString();
-    }*/
     protected virtual void SpawnAgent(AgentConfiguration agentConfig, Node node)
     {
         Vector3 spawnPosition = node.GetRandomPointInNodeArea();
@@ -200,6 +173,12 @@ public class AttackAgent : Unity.MLAgents.Agent
         agentInstance.SetNode(node);
         agentInstance.transform.rotation = node.transform.rotation;
         spawnedAgents.Add(agentInstance);
+    }
+
+    //Create the layout for the towers for training
+    protected void Setup()
+    {
+        
     }
 }
 
