@@ -71,6 +71,9 @@ ScriptsOnlyBuild:
     - UnityEngine.PostProcessing.PostProcessingProfile
     Unity.AI.Navigation.Editor.dll:
     - Unity.AI.Navigation.Editor.NavigationWindow
+    Unity.Barracuda.dll:
+    - Unity.Barracuda.NNModel
+    - Unity.Barracuda.NNModelData
     Unity.ML-Agents.dll:
     - Unity.MLAgents.DecisionRequester
     - Unity.MLAgents.Policies.BehaviorParameters
@@ -293,6 +296,8 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 4116}
     - Class: 114
+      Script: {instanceID: 4156}
+    - Class: 114
       Script: {instanceID: 4232}
     - Class: 114
       Script: {instanceID: 4318}
@@ -361,37 +366,39 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 7618}
     - Class: 114
-      Script: {instanceID: 7846}
+      Script: {instanceID: 7848}
     - Class: 114
-      Script: {instanceID: 7976}
+      Script: {instanceID: 7978}
     - Class: 114
-      Script: {instanceID: 8032}
+      Script: {instanceID: 8034}
     - Class: 114
-      Script: {instanceID: 8084}
+      Script: {instanceID: 8086}
     - Class: 114
-      Script: {instanceID: 8150}
+      Script: {instanceID: 8152}
     - Class: 114
-      Script: {instanceID: 8264}
+      Script: {instanceID: 8266}
     - Class: 114
-      Script: {instanceID: 8504}
+      Script: {instanceID: 8506}
     - Class: 114
-      Script: {instanceID: 8628}
+      Script: {instanceID: 8630}
     - Class: 114
-      Script: {instanceID: 8708}
+      Script: {instanceID: 8710}
     - Class: 114
-      Script: {instanceID: 8728}
+      Script: {instanceID: 8730}
     - Class: 114
-      Script: {instanceID: 8756}
+      Script: {instanceID: 8758}
     - Class: 114
-      Script: {instanceID: 8836}
+      Script: {instanceID: 8838}
     - Class: 114
-      Script: {instanceID: 9126}
+      Script: {instanceID: 9128}
     - Class: 114
-      Script: {instanceID: 9370}
+      Script: {instanceID: 9372}
     - Class: 114
-      Script: {instanceID: 9466}
+      Script: {instanceID: 9468}
     - Class: 114
-      Script: {instanceID: 9492}
+      Script: {instanceID: 9494}
+    - Class: 114
+      Script: {instanceID: 9634}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 124
@@ -1645,6 +1652,12 @@ ScriptsOnlyBuild:
     className: TextContainer
   - hash:
       serializedVersion: 2
+      Hash: 4c3e1882220179ebf9a812cb170638d8
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: AttackAgent
+  - hash:
+      serializedVersion: 2
       Hash: 4fb05f1f896a37b46abfd306353af089
     assemblyName: Unity.ML-Agents
     namespaceName: Unity.MLAgents.Sensors
@@ -1988,5 +2001,5 @@ ScriptsOnlyBuild:
   platform: 19
   scenePathNames:
   - Assets/Scenes/TowerDefense.unity
-  playerPath: F:/Master Thesis/Master-Thesis-TD-AI/Unity Template TD/TrainingsEnvs/Unity
+  playerPath: F:/Master Thesis/Master-Thesis-TD-AI/Unity Template TD/TrainingsEnvs/TowerSwitchTrained/Unity
     Template TD.exe

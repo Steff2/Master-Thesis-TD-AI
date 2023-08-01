@@ -2,22 +2,58 @@
     "DefenseAgent": {
         "checkpoints": [
             {
-                "steps": 103392,
-                "file_path": "results\\Defense_AI_Simple\\DefenseAgent\\DefenseAgent-103392.onnx",
-                "reward": null,
-                "creation_time": 1690379327.5374143,
+                "steps": 199974,
+                "file_path": "results\\Defense_AI_Simple\\DefenseAgent\\DefenseAgent-199974.onnx",
+                "reward": 1.0,
+                "creation_time": 1690895657.0277932,
                 "auxillary_file_paths": [
-                    "results\\Defense_AI_Simple\\DefenseAgent\\DefenseAgent-103392.pt"
+                    "results\\Defense_AI_Simple\\DefenseAgent\\DefenseAgent-199974.pt"
+                ]
+            },
+            {
+                "steps": 249961,
+                "file_path": "results\\Defense_AI_Simple\\DefenseAgent\\DefenseAgent-249961.onnx",
+                "reward": 1.0,
+                "creation_time": 1690896078.1344132,
+                "auxillary_file_paths": [
+                    "results\\Defense_AI_Simple\\DefenseAgent\\DefenseAgent-249961.pt"
+                ]
+            },
+            {
+                "steps": 299995,
+                "file_path": "results\\Defense_AI_Simple\\DefenseAgent\\DefenseAgent-299995.onnx",
+                "reward": 1.0,
+                "creation_time": 1690897479.0468874,
+                "auxillary_file_paths": [
+                    "results\\Defense_AI_Simple\\DefenseAgent\\DefenseAgent-299995.pt"
+                ]
+            },
+            {
+                "steps": 349942,
+                "file_path": "results\\Defense_AI_Simple\\DefenseAgent\\DefenseAgent-349942.onnx",
+                "reward": null,
+                "creation_time": 1690897826.9619243,
+                "auxillary_file_paths": [
+                    "results\\Defense_AI_Simple\\DefenseAgent\\DefenseAgent-349942.pt"
+                ]
+            },
+            {
+                "steps": 371438,
+                "file_path": "results\\Defense_AI_Simple\\DefenseAgent\\DefenseAgent-371438.onnx",
+                "reward": 1.0,
+                "creation_time": 1690897983.6633108,
+                "auxillary_file_paths": [
+                    "results\\Defense_AI_Simple\\DefenseAgent\\DefenseAgent-371438.pt"
                 ]
             }
         ],
         "final_checkpoint": {
-            "steps": 103392,
+            "steps": 371438,
             "file_path": "results\\Defense_AI_Simple\\DefenseAgent.onnx",
-            "reward": null,
-            "creation_time": 1690379327.5374143,
+            "reward": 1.0,
+            "creation_time": 1690897983.6633108,
             "auxillary_file_paths": [
-                "results\\Defense_AI_Simple\\DefenseAgent\\DefenseAgent-103392.pt"
+                "results\\Defense_AI_Simple\\DefenseAgent\\DefenseAgent-371438.pt"
             ]
         }
     },

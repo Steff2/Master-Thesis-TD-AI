@@ -1,26 +1,25 @@
 default_settings: null
 behaviors:
   DefenseAgent:
-    trainer_type: sac
+    trainer_type: ppo
     hyperparameters:
+      batch_size: 2048
+      buffer_size: 20480
       learning_rate: 0.0003
-      learning_rate_schedule: constant
-      batch_size: 512
-      buffer_size: 200000
-      buffer_init_steps: 0
-      tau: 0.005
-      steps_per_update: 10.0
-      save_replay_buffer: false
-      init_entcoef: 0.1
-      reward_signal_steps_per_update: 10.0
+      beta: 0.01
+      epsilon: 0.2
+      lambd: 0.95
+      num_epoch: 3
+      shared_critic: false
+      learning_rate_schedule: linear
+      beta_schedule: linear
+      epsilon_schedule: linear
     network_settings:
       normalize: false
-      hidden_units: 256
-      num_layers: 3
+      hidden_units: 512
+      num_layers: 2
       vis_encode_type: simple
-      memory:
-        sequence_length: 64
-        memory_size: 128
+      memory: null
       goal_conditioning_type: hyper
       deterministic: false
     reward_signals:
@@ -37,8 +36,8 @@ behaviors:
           deterministic: false
     init_path: null
     keep_checkpoints: 5
-    checkpoint_interval: 500000
-    max_steps: 4000000
+    checkpoint_interval: 50000
+    max_steps: 2000000
     time_horizon: 64
     summary_freq: 10000
     threaded: false
@@ -48,7 +47,7 @@ env_settings:
   env_path: TrainingsEnvs/UnityTemplateTD
   env_args: null
   base_port: 5005
-  num_envs: 5
+  num_envs: 8
   num_areas: 1
   seed: -1
   max_lifetime_restarts: 10

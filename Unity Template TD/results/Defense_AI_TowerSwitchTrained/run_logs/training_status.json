@@ -1,0 +1,29 @@
+{
+    "DefenseAgent": {
+        "checkpoints": [
+            {
+                "steps": 20513,
+                "file_path": "results\\Defense_AI_TowerSwitchTrained\\DefenseAgent\\DefenseAgent-20513.onnx",
+                "reward": null,
+                "creation_time": 1690899386.3757381,
+                "auxillary_file_paths": [
+                    "results\\Defense_AI_TowerSwitchTrained\\DefenseAgent\\DefenseAgent-20513.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 20513,
+            "file_path": "results\\Defense_AI_TowerSwitchTrained\\DefenseAgent.onnx",
+            "reward": null,
+            "creation_time": 1690899386.3757381,
+            "auxillary_file_paths": [
+                "results\\Defense_AI_TowerSwitchTrained\\DefenseAgent\\DefenseAgent-20513.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "0.30.0",
+        "torch_version": "1.7.1+cu110"
+    }
+}
