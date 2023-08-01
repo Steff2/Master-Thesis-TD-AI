@@ -7,13 +7,13 @@ behaviors:
       #size of new experiences before policy model update
       buffer_size: 20480
       #learning rate along gradient descent - should decrease if training unstable and no consistent reward increase
-      learning_rate: 0.00005
+      learning_rate: 0.0003
       #randomness - if entropy drop too quickly, increase
-      beta: 0.008
+      beta: 0.01
       #speed of policy change - small is more stable, but slower
-      epsilon: 0.15
+      epsilon: 0.2
       #bias towards current reward
-      lambd: 0.91
+      lambd: 0.95
       num_epoch: 3
       learning_rate_schedule: linear
       
