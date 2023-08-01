@@ -43,6 +43,12 @@ Wichtig gegen Anfang war das richtige Layout des Tower Defense spiels zu finden 
 
 
 
+24.07.2023 - Änderung verschiedener Config Parameter zum testen
 
 26.07.2023 - SAC als trainertyp versucht, aber keine sichtlichen Änderungen im Training - Viele Freezes während SAC training, dadurch sehr sehr langsames Training
 27.06.2023 - Bis nächstes Meeting Anfang mit AttackAgent und Umbau der Code Struktur für Units senden und alles, dass damit zusammenhängt
+
+
+
+01.08.2023 - Tower Platzierung war falsch, hatte Türme in die Liste eingetragen und observiert, auch wenn es auf einem besetzten platz war, oder der Turm durch Currency Mangel nicht gebaut werden konnte (trotzdem kein besseres Ergebnis)
+	   - Random Türme aufsetzen und AI Turmtyp entscheiden lassen hatte fragwürdige Erfolge. Sehr hoher average reward direkt zu anfang und bei 1,00 average reward ist es immer mal wieder auf dieselbe Zahl zurückgefallen bei der Summary anstatt 1,00. Needs more experimenting
