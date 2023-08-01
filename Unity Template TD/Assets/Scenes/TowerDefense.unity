@@ -672,7 +672,7 @@ MonoBehaviour:
       type: 2}
     delayToSpawn: 2
     startingNode: {fileID: 3629148609067440910}
-  - agentConfiguration: {fileID: 11400000, guid: 57816016cc4b94e069d9d8a6add55324,
+  - agentConfiguration: {fileID: 11400000, guid: 194678e37891244b78d3ad8b21d3f878,
       type: 2}
     delayToSpawn: 2
     startingNode: {fileID: 3629148609067440910}
@@ -1416,6 +1416,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3946091242109359491, guid: 4c4a37ecbd32996459f7c3e130f42ec9,
         type: 3}
+      propertyPath: m_Model
+      value: 
+      objectReference: {fileID: 5022602860645237092, guid: 99beb37d11502134ea57738b0c97f88f,
+        type: 3}
+    - target: {fileID: 3946091242109359491, guid: 4c4a37ecbd32996459f7c3e130f42ec9,
+        type: 3}
+      propertyPath: m_BehaviorType
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3946091242109359491, guid: 4c4a37ecbd32996459f7c3e130f42ec9,
+        type: 3}
       propertyPath: m_BrainParameters.VectorObservationSize
       value: 1
       objectReference: {fileID: 0}
@@ -1494,6 +1505,12 @@ PrefabInstance:
       propertyPath: baseHealth
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 6257246602935447464, guid: 4c4a37ecbd32996459f7c3e130f42ec9,
+        type: 3}
+      propertyPath: spawnInstructions.Array.data[14].agentConfiguration
+      value: 
+      objectReference: {fileID: 11400000, guid: 194678e37891244b78d3ad8b21d3f878,
+        type: 2}
     - target: {fileID: 6373596584244378972, guid: 4c4a37ecbd32996459f7c3e130f42ec9,
         type: 3}
       propertyPath: m_Mesh
