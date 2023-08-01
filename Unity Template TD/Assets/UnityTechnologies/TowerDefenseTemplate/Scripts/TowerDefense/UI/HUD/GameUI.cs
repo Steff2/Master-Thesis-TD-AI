@@ -504,7 +504,7 @@ namespace TowerDefense.UI.HUD
 		/// <exception cref="InvalidOperationException">
 		/// Throws exception if trying to buy towers in Build Mode
 		/// </exception>
-		public void BuyTower()
+		public bool BuyTower()
 		{
 			if (!isBuilding)
 			{
@@ -512,13 +512,18 @@ namespace TowerDefense.UI.HUD
 			}
 			if (m_CurrentTower == null || !IsGhostAtValidPosition())
 			{
-				return;
+				return false;
 			}
 			int cost = m_CurrentTower.controller.purchaseCost;
 			bool successfulPurchase = LevelManager.instance.currency.TryPurchase(cost);
 			if (successfulPurchase)
 			{
 				PlaceTower();
+				return true;
+			}
+			else
+			{
+				return false;
 			}
 		}
 
