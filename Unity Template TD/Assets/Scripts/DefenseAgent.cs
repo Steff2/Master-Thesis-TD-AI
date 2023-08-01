@@ -9,8 +9,7 @@ using TowerDefense.Towers.Placement;
 using Core.Utilities;
 using TowerDefense.UI.HUD;
 using Core.Economy;
-using System.IO;
-
+using System.Linq;
 public class DefenseAgent : Agent
 {
 
@@ -70,9 +69,9 @@ public class DefenseAgent : Agent
 
     public override void CollectObservations(VectorSensor sensor)
     {
-        //needs to be normalized
         //sensor.AddObservation(currency.currentCurrency / 500);
         sensor.AddObservation(homeBase.configuration.currentHealth / baseHealth);
+
         //Generate for loop while creating a new list of floats for 183 floats
         for (int i = 0; i < m_GridTowerOccupationRepresentative.Count; i++)
         {
@@ -91,12 +90,16 @@ public class DefenseAgent : Agent
             listObservation[HighestPlacementGridPosition + 2] = m_GridTowerOccupationRepresentative[i].towerType / 3f;
 
             m_BufferSensor.AppendObservation(listObservation);
-
-            //streamWriter.SetStoredData(m_GridTowerOccupationRepresentative[i].gridTileNumber.ToString());
-            //streamWriter.SetStoredData(listObservation[HighestPlacementGridPosition].ToString());
-            //streamWriter.SetStoredData(listObservation[HighestPlacementGridPosition + 1].ToString());
-            //streamWriter.SetStoredData(listObservation[HighestPlacementGridPosition + 2].ToString());
         }
+        /*for (int i = 0; i < m_GridTowerOccupationRepresentative.Count; i++)
+        {
+            float[] listObservation = new float[HighestPlacementGridPosition];
+
+            listObservation[m_GridTowerOccupationRepresentative[i].gridTileNumber] = m_GridTowerOccupationRepresentative[i].towerType / 3f;
+
+            m_BufferSensor.AppendObservation(listObservation);
+        }*/
+
     }
 
     public void Update()
@@ -105,9 +108,9 @@ public class DefenseAgent : Agent
     }
     public override void OnEpisodeBegin()
     {
-        if (GameUI.instanceExists) { GameUI.instance.m_CurrentArea = placementArea; }
+    if (GameUI.instanceExists) { GameUI.instance.m_CurrentArea = placementArea; }
 
-        ResetBaseHealth();
+    ResetBaseHealth();
     }
     public void BuildTower(ActionBuffers actions)
     {
@@ -115,11 +118,13 @@ public class DefenseAgent : Agent
         //var discreteplacementGridSelector = actions.DiscreteActions[1];
         var continuousGridXCoordinate = actions.ContinuousActions[0];
         var continuousGridYCoordinate = actions.ContinuousActions[1];
+        //var GridXCoordinateRandomizer = Random.Range(0, placementArea.dimensions.x - 1);
+        //var GridYCoordinateRandomizer = Random.Range(0, placementArea.dimensions.y - 1);
 
         var tower = towersDictionary[discreteTowerTypeSelector];
 
         towerIndex = discreteTowerTypeSelector;
-        //Generate switch case of discreteTowerTypeSelector
+
         switch (discreteTowerTypeSelector)
         {
             case 0:
@@ -160,18 +165,21 @@ public class DefenseAgent : Agent
 
         var placementGridCoordinate = new IntVector2(gridXCoordinateConvertedToContinuousActionScale, gridYCoordinateConvertedToContinuousActionScale);
 
+        //var placeGridCoordinateRandom = new IntVector2(GridXCoordinateRandomizer, GridYCoordinateRandomizer);
+
         GameUI.instance.m_GridPosition = placementGridCoordinate;
 
-        m_GridTowerOccupationRepresentative.Add(new PlacedTowerData
-        {
-            towerType = towerIndex,
-            placementGridCoordinates = placementGridCoordinate,
-            gridTileNumber = Mathf.Clamp(placementGridCoordinate.x, 1, placementArea.dimensions.x) * Mathf.Clamp(placementGridCoordinate.x, 1, placementArea.dimensions.y) - 1
-        });
-        //initialize Tower
-        GameUI.instance.BuyTower();
-        //GameUI.instance.Unpause();
+        var tempGridTileNumber = Mathf.Clamp(placementGridCoordinate.x, 1, placementArea.dimensions.x) * Mathf.Clamp(placementGridCoordinate.x, 1, placementArea.dimensions.y) - 1;
 
+        if (!m_GridTowerOccupationRepresentative.Any(c => c.gridTileNumber == tempGridTileNumber) && GameUI.instance.BuyTower())
+        {
+            m_GridTowerOccupationRepresentative.Add(new PlacedTowerData
+            {
+                towerType = towerIndex,
+                placementGridCoordinates = placementGridCoordinate,
+                gridTileNumber = tempGridTileNumber
+            });
+        }
     }
 
     public override void OnActionReceived(ActionBuffers actions)
