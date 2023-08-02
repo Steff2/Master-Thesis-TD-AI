@@ -89,6 +89,7 @@ public class DefenseAgent : Agent
             listObservation[HighestPlacementGridPosition + 1] = m_GridTowerOccupationRepresentative[i].placementGridCoordinates.y / placementGrids[0].dimensions.y - 1;
             listObservation[HighestPlacementGridPosition + 2] = m_GridTowerOccupationRepresentative[i].towerType / 3f;
 
+            Debug.Log(i + " Element: " + "Grid Number: " + m_GridTowerOccupationRepresentative[i].gridTileNumber + " Coords: x: " + m_GridTowerOccupationRepresentative[i].placementGridCoordinates.x + ", y: " + m_GridTowerOccupationRepresentative[i].placementGridCoordinates.y + " TowerType: " + m_GridTowerOccupationRepresentative[i].towerType);
             m_BufferSensor.AppendObservation(listObservation);
         }
         /*for (int i = 0; i < m_GridTowerOccupationRepresentative.Count; i++)
@@ -108,9 +109,9 @@ public class DefenseAgent : Agent
     }
     public override void OnEpisodeBegin()
     {
-    if (GameUI.instanceExists) { GameUI.instance.m_CurrentArea = placementArea; }
+        if (GameUI.instanceExists) { GameUI.instance.m_CurrentArea = placementArea; }
 
-    ResetBaseHealth();
+        ResetBaseHealth();
     }
     public void BuildTower(ActionBuffers actions)
     {
@@ -169,7 +170,7 @@ public class DefenseAgent : Agent
 
         GameUI.instance.m_GridPosition = placementGridCoordinate;
 
-        var tempGridTileNumber = Mathf.Clamp(placementGridCoordinate.x, 1, placementArea.dimensions.x) * Mathf.Clamp(placementGridCoordinate.x, 1, placementArea.dimensions.y) - 1;
+        var tempGridTileNumber = Mathf.Clamp(placementGridCoordinate.x, 0, placementArea.dimensions.x) * Mathf.Clamp(placementGridCoordinate.x, 1, placementArea.dimensions.y) + 1;
 
         if (!m_GridTowerOccupationRepresentative.Any(c => c.gridTileNumber == tempGridTileNumber) && GameUI.instance.BuyTower())
         {
