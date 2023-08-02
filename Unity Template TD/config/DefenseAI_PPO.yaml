@@ -19,7 +19,7 @@ behaviors:
       
     network_settings:
       normalize: false
-      hidden_units: 512
+      hidden_units: 256
       num_layers: 2
       
     reward_signals:
@@ -35,4 +35,4 @@ behaviors:
     checkpoint_interval: 50000
     max_steps: 2000000
     time_horizon: 64
-    summary_freq: 10000
+    summary_freq: 60000
