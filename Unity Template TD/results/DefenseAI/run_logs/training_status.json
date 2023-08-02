@@ -1,0 +1,29 @@
+{
+    "DefenseAgent": {
+        "checkpoints": [
+            {
+                "steps": 6580,
+                "file_path": "results\\DefenseAI\\DefenseAgent\\DefenseAgent-6580.onnx",
+                "reward": 0.391304347826087,
+                "creation_time": 1690983586.955868,
+                "auxillary_file_paths": [
+                    "results\\DefenseAI\\DefenseAgent\\DefenseAgent-6580.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 6580,
+            "file_path": "results\\DefenseAI\\DefenseAgent.onnx",
+            "reward": 0.391304347826087,
+            "creation_time": 1690983586.955868,
+            "auxillary_file_paths": [
+                "results\\DefenseAI\\DefenseAgent\\DefenseAgent-6580.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "0.30.0",
+        "torch_version": "1.7.1+cu110"
+    }
+}

@@ -71,9 +71,6 @@ ScriptsOnlyBuild:
     - UnityEngine.PostProcessing.PostProcessingProfile
     Unity.AI.Navigation.Editor.dll:
     - Unity.AI.Navigation.Editor.NavigationWindow
-    Unity.Barracuda.dll:
-    - Unity.Barracuda.NNModel
-    - Unity.Barracuda.NNModelData
     Unity.ML-Agents.dll:
     - Unity.MLAgents.DecisionRequester
     - Unity.MLAgents.Policies.BehaviorParameters
@@ -296,8 +293,6 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 4116}
     - Class: 114
-      Script: {instanceID: 4156}
-    - Class: 114
       Script: {instanceID: 4232}
     - Class: 114
       Script: {instanceID: 4318}
@@ -397,8 +392,6 @@ ScriptsOnlyBuild:
       Script: {instanceID: 9468}
     - Class: 114
       Script: {instanceID: 9494}
-    - Class: 114
-      Script: {instanceID: 9634}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 124

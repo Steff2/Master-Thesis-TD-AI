@@ -16,7 +16,7 @@ behaviors:
       epsilon_schedule: linear
     network_settings:
       normalize: false
-      hidden_units: 512
+      hidden_units: 256
       num_layers: 2
       vis_encode_type: simple
       memory: null
@@ -39,15 +39,15 @@ behaviors:
     checkpoint_interval: 50000
     max_steps: 2000000
     time_horizon: 64
-    summary_freq: 10000
+    summary_freq: 60000
     threaded: false
     self_play: null
     behavioral_cloning: null
 env_settings:
-  env_path: TrainingsEnvs/UnityTemplateTD
+  env_path: TrainingsEnvs/TypeAndPlacing/UnityTemplateTD
   env_args: null
   base_port: 5005
-  num_envs: 8
+  num_envs: 6
   num_areas: 1
   seed: -1
   max_lifetime_restarts: 10
