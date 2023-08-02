@@ -1102,12 +1102,12 @@ PrefabInstance:
     - target: {fileID: 294840325043106275, guid: 4c4a37ecbd32996459f7c3e130f42ec9,
         type: 3}
       propertyPath: configuration.maxHealth
-      value: 5
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 294840325043106275, guid: 4c4a37ecbd32996459f7c3e130f42ec9,
         type: 3}
       propertyPath: configuration.startingHealth
-      value: 5
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 295078684784899663, guid: 4c4a37ecbd32996459f7c3e130f42ec9,
         type: 3}
@@ -1418,8 +1418,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Model
       value: 
-      objectReference: {fileID: 5022602860645237092, guid: 99beb37d11502134ea57738b0c97f88f,
-        type: 3}
+      objectReference: {fileID: 0}
     - target: {fileID: 3946091242109359491, guid: 4c4a37ecbd32996459f7c3e130f42ec9,
         type: 3}
       propertyPath: m_BehaviorType
@@ -1429,6 +1428,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_BrainParameters.VectorObservationSize
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3946091242109359491, guid: 4c4a37ecbd32996459f7c3e130f42ec9,
+        type: 3}
+      propertyPath: m_BrainParameters.VectorActionSize.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3946091242109359491, guid: 4c4a37ecbd32996459f7c3e130f42ec9,
+        type: 3}
+      propertyPath: m_BrainParameters.VectorActionSize.Array.data[0]
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3946091242109359491, guid: 4c4a37ecbd32996459f7c3e130f42ec9,
+        type: 3}
+      propertyPath: m_BrainParameters.m_ActionSpec.m_NumContinuousActions
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4003221902207273438, guid: 4c4a37ecbd32996459f7c3e130f42ec9,
         type: 3}
@@ -1503,7 +1517,7 @@ PrefabInstance:
     - target: {fileID: 5599841985698983058, guid: 4c4a37ecbd32996459f7c3e130f42ec9,
         type: 3}
       propertyPath: baseHealth
-      value: 5
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6257246602935447464, guid: 4c4a37ecbd32996459f7c3e130f42ec9,
         type: 3}
