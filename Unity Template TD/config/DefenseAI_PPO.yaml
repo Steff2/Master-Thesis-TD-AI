@@ -19,14 +19,17 @@ behaviors:
       
     network_settings:
       normalize: false
-      hidden_units: 256
+      hidden_units: 512
       num_layers: 2
       
     reward_signals:
       extrinsic:
         #low is for getting lots of rewards now, high is for getting rewards in the future and prepare now
-        gamma: 0.99
+        gamma: 0.995
         strength: 1.0
+      curiosity:
+        strength: 0.01
+        gamma: 0.995
       # memory
       #memory:
       #  sequence_length: 64
