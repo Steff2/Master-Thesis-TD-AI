@@ -53,3 +53,6 @@ Wichtig gegen Anfang war das richtige Layout des Tower Defense spiels zu finden 
 01.08.2023 - Tower Platzierung war falsch, hatte Türme in die Liste eingetragen und observiert, auch wenn es auf einem besetzten platz war, oder der Turm durch Currency Mangel nicht gebaut werden konnte (trotzdem kein besseres Ergebnis) - Dafür Meeting mit Manu
 	   - Random Türme aufsetzen und AI Turmtyp entscheiden lassen hatte fragwürdige Erfolge. Sehr hoher average reward direkt zu anfang und bei 1,00 average reward ist es immer mal wieder auf dieselbe Zahl zurückgefallen bei der Summary anstatt 1,00. Needs more experimenting
 02.08.2023 - fixed gridtilenumber 0 being represented twice by x0,y0 and x1,y0 = Kein Ping Pong der Werte mehr (1 Versuch bisher), aber hört relativ schnell auf sich zu verbessern
+03.08.2023 - Epsilon von 0.2 auf 0.1 num_layer von 2 auf 3, learning_rate von 0.0003 auf 0.0001 erzielt schlechtere Resultate
+	   - learning_rate: 0.0002, epsilon: 0.3,  hidden_units: 256, num_layer: 3 - Result: Deviation bis ~ 0.77, Mean bis ~0.63 und springt danach wieder hoch
+	   - learning_rate: 0.0001, epsilon: 0.15 - bis 60k Steps, um runtergegangen bis ~0.8 dann wieder hoch und runter
