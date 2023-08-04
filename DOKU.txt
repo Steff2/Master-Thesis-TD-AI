@@ -56,3 +56,6 @@ Wichtig gegen Anfang war das richtige Layout des Tower Defense spiels zu finden 
 03.08.2023 - Epsilon von 0.2 auf 0.1 num_layer von 2 auf 3, learning_rate von 0.0003 auf 0.0001 erzielt schlechtere Resultate
 	   - learning_rate: 0.0002, epsilon: 0.3,  hidden_units: 256, num_layer: 3 - Result: Deviation bis ~ 0.77, Mean bis ~0.63 und springt danach wieder hoch
 	   - learning_rate: 0.0001, epsilon: 0.15 - bis 60k Steps, um runtergegangen bis ~0.8 dann wieder hoch und runter
+04.08.2023 - standard config geht bei 0.6 (deviation) ~0.78 mean, wieder hoch
+	   - beta: 0.005, time_horizon: 128, no curiosity, num_layers: 2, geht von 0.7 runter auf 0.66 und wieder hoch zu 0.77-0.8
+	   - added back curiosity: 0.01, beta: 0.01
