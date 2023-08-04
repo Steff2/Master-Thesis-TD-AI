@@ -40,12 +40,13 @@ public class DefenseAgent : Agent
     private int gridXCoordinateConvertedToContinuousActionScale;
     private int gridYCoordinateConvertedToContinuousActionScale;
 
-    private const int HighestPlacementGridPosition = 14;
+    private int HighestPlacementGridPosition;
 
     public override void Initialize()
     {
 
         m_BufferSensor = GetComponent<BufferSensorComponent>();
+        HighestPlacementGridPosition = m_BufferSensor.MaxNumObservables;
 
         LevelManager.instance.resetLose += Loss;
         LevelManager.instance.resetWin += Win;
@@ -161,8 +162,8 @@ public class DefenseAgent : Agent
 
         if (!GameUI.instance.isBuilding) GameUI.instance.SetToBuildMode(towertoPlace);
 
-        gridXCoordinateConvertedToContinuousActionScale = Mathf.RoundToInt (Mathf.Abs (continuousGridXCoordinate) * placementArea.dimensions.x - 1);
-        gridYCoordinateConvertedToContinuousActionScale = Mathf.RoundToInt (Mathf.Abs (continuousGridYCoordinate) * placementArea.dimensions.y - 1);
+        gridXCoordinateConvertedToContinuousActionScale = Mathf.RoundToInt (Mathf.Abs (continuousGridXCoordinate) * (placementArea.dimensions.x - 1));
+        gridYCoordinateConvertedToContinuousActionScale = Mathf.RoundToInt (Mathf.Abs (continuousGridYCoordinate) * (placementArea.dimensions.y - 1));
 
         var placementGridCoordinate = new IntVector2(gridXCoordinateConvertedToContinuousActionScale, gridYCoordinateConvertedToContinuousActionScale);
 
@@ -170,7 +171,7 @@ public class DefenseAgent : Agent
 
         GameUI.instance.m_GridPosition = placementGridCoordinate;
 
-        var tempGridTileNumber = Mathf.Clamp(placementGridCoordinate.x, 0, placementArea.dimensions.x) * Mathf.Clamp(placementGridCoordinate.x, 1, placementArea.dimensions.y) + 1;
+        var tempGridTileNumber = placementGridCoordinate.x + placementGridCoordinate.y * placementArea.dimensions.x + 1;
 
         if (!m_GridTowerOccupationRepresentative.Any(c => c.gridTileNumber == tempGridTileNumber) && GameUI.instance.BuyTower())
         {

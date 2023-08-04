@@ -1287,12 +1287,12 @@ PrefabInstance:
     - target: {fileID: 2439678905690309166, guid: 4c4a37ecbd32996459f7c3e130f42ec9,
         type: 3}
       propertyPath: m_Size.z
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2439678905690309166, guid: 4c4a37ecbd32996459f7c3e130f42ec9,
         type: 3}
       propertyPath: m_Center.z
-      value: 0.5
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 3787631206589671360, guid: 4c4a37ecbd32996459f7c3e130f42ec9,
         type: 3}
@@ -1452,7 +1452,7 @@ PrefabInstance:
     - target: {fileID: 4310835506390697583, guid: 4c4a37ecbd32996459f7c3e130f42ec9,
         type: 3}
       propertyPath: dimensions.y
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 5301888238094782720, guid: 4c4a37ecbd32996459f7c3e130f42ec9,
         type: 3}
@@ -1553,17 +1553,17 @@ PrefabInstance:
     - target: {fileID: 7698054308167438420, guid: 4c4a37ecbd32996459f7c3e130f42ec9,
         type: 3}
       propertyPath: m_ObservableSize
-      value: 17
+      value: 45
       objectReference: {fileID: 0}
     - target: {fileID: 7698054308167438420, guid: 4c4a37ecbd32996459f7c3e130f42ec9,
         type: 3}
       propertyPath: m_MaxNumObservables
-      value: 14
+      value: 42
       objectReference: {fileID: 0}
     - target: {fileID: 7831414276968929264, guid: 4c4a37ecbd32996459f7c3e130f42ec9,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 9.5
+      value: 8.5
       objectReference: {fileID: 0}
     - target: {fileID: 8456917811436846831, guid: 4c4a37ecbd32996459f7c3e130f42ec9,
         type: 3}
