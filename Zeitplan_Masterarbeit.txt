@@ -68,6 +68,11 @@ Anfang 21.06.2023
 02.08.2023 - Fixed Doppeleintrag von Gridtilenumbers 0 (0 und 1 werden auf 1 gelegt) nach Training von Turmtypauswahl und Brute force Debugging, passables und funktionales Training das aber sehr schnelle decline in progress und dann mäßiges Ping Pong der Werte
 03.08.2023 - Test versch. Config Variablenwerte (s. Doku für Details)
 04.08.2023 - Fixed negative X Coord happening for placementGridCoord, (s. Doku für Config Parameter Details)
+
+
+07.08.2023 - Fixed ObservationsCoord die nur -1 als Wert haben (haben Typecast to float gebraucht für float value) und -1 richtig platziert in Klammern
+08.08.2023 - Training (s. DOKU für Details)
+09.08.2023 - Changed Only Tower Select Training to still include placing action from AI, just not observed
 ~ bis 09.08.2023 Je nach Fortschritt finalisieren einer Spielerseite für Training (Defense oder Offense)
 
 ~ bis 30.08.2023 Zusatzzeit für die Kalibrierung des anderen Spielers
