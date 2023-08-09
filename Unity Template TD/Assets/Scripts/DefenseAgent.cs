@@ -76,32 +76,25 @@ public class DefenseAgent : Agent
         //Generate for loop while creating a new list of floats for 183 floats
         for (int i = 0; i < m_GridTowerOccupationRepresentative.Count; i++)
         {
-            float[] listObservation = new float[HighestPlacementGridPosition + 3];
+            //HighestPlacementGridPosition + 3 
+            float[] listObservation = new float[HighestPlacementGridPosition];
 
             try
             {
-                listObservation[m_GridTowerOccupationRepresentative[i].gridTileNumber] = 1f;
+                // 1f normally
+                listObservation[m_GridTowerOccupationRepresentative[i].gridTileNumber] = (float)m_GridTowerOccupationRepresentative[i].towerType / 3f;
             }
             catch (System.IndexOutOfRangeException)
             {
                 Debug.Log("Index" + (m_GridTowerOccupationRepresentative[i].gridTileNumber) + "out of range");
             }
-            listObservation[HighestPlacementGridPosition] = m_GridTowerOccupationRepresentative[i].placementGridCoordinates.x / placementGrids[0].dimensions.x - 1;
-            listObservation[HighestPlacementGridPosition + 1] = m_GridTowerOccupationRepresentative[i].placementGridCoordinates.y / placementGrids[0].dimensions.y - 1;
-            listObservation[HighestPlacementGridPosition + 2] = m_GridTowerOccupationRepresentative[i].towerType / 3f;
+            //listObservation[HighestPlacementGridPosition] = (float)m_GridTowerOccupationRepresentative[i].placementGridCoordinates.x / (float)(placementGrids[0].dimensions.x - 1);
+            //listObservation[HighestPlacementGridPosition + 1] = (float)m_GridTowerOccupationRepresentative[i].placementGridCoordinates.y / (float)(placementGrids[0].dimensions.y - 1);
+            //listObservation[HighestPlacementGridPosition] = (float)m_GridTowerOccupationRepresentative[i].towerType / 3f;
 
             Debug.Log(i + " Element: " + "Grid Number: " + m_GridTowerOccupationRepresentative[i].gridTileNumber + " Coords: x: " + m_GridTowerOccupationRepresentative[i].placementGridCoordinates.x + ", y: " + m_GridTowerOccupationRepresentative[i].placementGridCoordinates.y + " TowerType: " + m_GridTowerOccupationRepresentative[i].towerType);
             m_BufferSensor.AppendObservation(listObservation);
         }
-        /*for (int i = 0; i < m_GridTowerOccupationRepresentative.Count; i++)
-        {
-            float[] listObservation = new float[HighestPlacementGridPosition];
-
-            listObservation[m_GridTowerOccupationRepresentative[i].gridTileNumber] = m_GridTowerOccupationRepresentative[i].towerType / 3f;
-
-            m_BufferSensor.AppendObservation(listObservation);
-        }*/
-
     }
 
     public void Update()
@@ -112,6 +105,8 @@ public class DefenseAgent : Agent
     {
         if (GameUI.instanceExists) { GameUI.instance.m_CurrentArea = placementArea; }
 
+        m_GridTowerOccupationRepresentative.Clear();
+        LevelManager.instance.ResetGame();
         ResetBaseHealth();
     }
     public void BuildTower(ActionBuffers actions)
@@ -197,22 +192,12 @@ public class DefenseAgent : Agent
     public void Win()
     {
         SetReward(1f);
-        //streamWriter.SetStoredData("\n" + "Won" + "\n");
-        //streamWriter = new FileWriter("DefenseAgent" + fileNumber, "txt");
-        //fileNumber++;
-        m_GridTowerOccupationRepresentative.Clear();
-        LevelManager.instance.ResetGame();
         EndEpisode();
     }
 
     public void Loss()
     {
         SetReward(-1f);
-        //streamWriter.SetStoredData("\n" + "Lost" + "\n");
-        //streamWriter = new FileWriter("DefenseAgent" + fileNumber, "txt");
-        //fileNumber++;
-        m_GridTowerOccupationRepresentative.Clear();
-        LevelManager.instance.ResetGame();
         EndEpisode();
     }
 
