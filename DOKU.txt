@@ -59,3 +59,10 @@ Wichtig gegen Anfang war das richtige Layout des Tower Defense spiels zu finden 
 04.08.2023 - standard config geht bei 0.6 (deviation) ~0.78 mean, wieder hoch
 	   - beta: 0.005, time_horizon: 128, no curiosity, num_layers: 2, geht von 0.7 runter auf 0.66 und wieder hoch zu 0.77-0.8
 	   - added back curiosity: 0.01, beta: 0.01
+
+
+08.08.2023 - learning_rate: 0.0002, beta: 0.03 - results: ~value either ~7.5 or every other value ~6.5
+	   - beta: 0.01 - results: werte zw. 0.65 und 7.5 aber inkonsistenter
+	   - time_horizon: 64, hidden_units: 256, learning_rate: 0.0003, results: pendelt sich um ~0.6 - ~0.7
+
+09.08.2023 - After change (s. Zeitplan) and only Tower Select Training, Avg. is ~8.6 somewhat consistent starting at 1000000+ steps, stopped on 2mil steps with 
