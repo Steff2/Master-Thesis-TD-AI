@@ -1553,7 +1553,7 @@ PrefabInstance:
     - target: {fileID: 7698054308167438420, guid: 4c4a37ecbd32996459f7c3e130f42ec9,
         type: 3}
       propertyPath: m_ObservableSize
-      value: 45
+      value: 42
       objectReference: {fileID: 0}
     - target: {fileID: 7698054308167438420, guid: 4c4a37ecbd32996459f7c3e130f42ec9,
         type: 3}
